@@ -205,18 +205,26 @@
 }
 
 .savedItemRemove {
-    background: none;
-    border: none;
-    color: var(--color-blood-red-bright);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(200, 60, 60, 0.06);
+    border: 1px solid rgba(200, 60, 60, 0.2);
+    border-radius: var(--radius-sm);
+    color: rgba(200, 100, 100, 0.6);
     cursor: pointer;
-    font-size: 0.9rem;
-    padding: 2px 6px;
-    opacity: 0.6;
-    transition: opacity var(--transition-fast);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
 }
 
 .savedItemRemove:hover {
-    opacity: 1;
+    background: rgba(200, 60, 60, 0.18);
+    border-color: rgba(200, 60, 60, 0.5);
+    color: #ff6b6b;
+    transform: scale(1.1);
 }
 
 .clearAllBtn {
@@ -551,6 +559,102 @@
     margin-bottom: 4px;
     font-size: 0.83rem;
     line-height: 1.5;
+}
+
+/* ─── Generator Card Actions ─── */
+.npcActions {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: var(--space-sm);
+}
+
+.saveToSessionBtn {
+    padding: 6px 14px;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.12), rgba(76, 175, 80, 0.06));
+    border: 1px solid rgba(76, 175, 80, 0.35);
+    border-radius: var(--radius-md);
+    color: #81c784;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.saveToSessionBtn:hover {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.25), rgba(76, 175, 80, 0.12));
+    border-color: rgba(76, 175, 80, 0.6);
+    color: #a5d6a7;
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.15);
+    transform: translateY(-1px);
+}
+
+.discardBtn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(200, 60, 60, 0.06);
+    border: 1px solid rgba(200, 60, 60, 0.2);
+    border-radius: var(--radius-sm);
+    color: rgba(200, 100, 100, 0.6);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all var(--transition-fast);
+}
+
+.discardBtn:hover {
+    background: rgba(200, 60, 60, 0.18);
+    border-color: rgba(200, 60, 60, 0.5);
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+/* ─── Monster Stat Blocks ─── */
+.statRow {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xs);
+}
+
+.statBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(212, 165, 116, 0.04);
+    border: 1px solid rgba(212, 165, 116, 0.1);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    min-width: 56px;
+    flex: 1;
+}
+
+.statLabel {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: 1px;
+}
+
+.statValue {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-heading);
+}
+
+.statNote {
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 1px;
 }
 
 /* ─── Linked Map Tag ─── */

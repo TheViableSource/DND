@@ -445,9 +445,9 @@ export default function SessionPlannerPage() {
                                                     </div>
                                                     <div className={styles.npcActions}>
                                                         <button className={styles.saveToSessionBtn} onClick={() => saveNPCToSession(npc)} title="Save to Session">
-                                                            📌 Save
+                                                            Save to Session
                                                         </button>
-                                                        <button className={styles.deleteItemBtn} onClick={() => removeGeneratedNPC(i)} title="Remove NPC">✕</button>
+                                                        <button className={styles.discardBtn} onClick={() => removeGeneratedNPC(i)} title="Remove NPC">✕</button>
                                                     </div>
                                                 </div>
 
@@ -537,24 +537,37 @@ export default function SessionPlannerPage() {
                                                     </div>
                                                     <div className={styles.npcActions}>
                                                         <button className={styles.saveToSessionBtn} onClick={() => saveMonsterToSession(mon)} title="Save to Session">
-                                                            📌 Save
+                                                            Save to Session
                                                         </button>
-                                                        <button className={styles.deleteItemBtn} onClick={() => removeGeneratedMonster(i)} title="Remove">✕</button>
+                                                        <button className={styles.discardBtn} onClick={() => removeGeneratedMonster(i)} title="Remove">✕</button>
                                                     </div>
                                                 </div>
                                                 <div className={styles.npcDetails}>
-                                                    <div className={styles.npcDetailRow}>
-                                                        <span className={styles.npcDetailLabel}>AC</span>
-                                                        <span>{mon.ac}{mon.acType ? ` (${mon.acType})` : ""}</span>
+                                                    <div className={styles.statRow}>
+                                                        <div className={styles.statBlock}><span className={styles.statLabel}>AC</span><span className={styles.statValue}>{mon.ac}</span>{mon.acType && <span className={styles.statNote}>{mon.acType}</span>}</div>
+                                                        <div className={styles.statBlock}><span className={styles.statLabel}>HP</span><span className={styles.statValue}>{mon.hp}</span><span className={styles.statNote}>{mon.hitDice}</span></div>
+                                                        <div className={styles.statBlock}><span className={styles.statLabel}>Speed</span><span className={styles.statValue}>{mon.speed}</span></div>
                                                     </div>
-                                                    <div className={styles.npcDetailRow}>
-                                                        <span className={styles.npcDetailLabel}>HP</span>
-                                                        <span>{mon.hp} ({mon.hitDice})</span>
-                                                    </div>
-                                                    <div className={styles.npcDetailRow}>
-                                                        <span className={styles.npcDetailLabel}>Speed</span>
-                                                        <span>{mon.speed}</span>
-                                                    </div>
+                                                    {mon.abilities && (
+                                                        <div className={styles.statRow}>
+                                                            <div className={styles.statBlock}><span className={styles.statLabel}>STR</span><span className={styles.statValue}>{mon.abilities.str}</span></div>
+                                                            <div className={styles.statBlock}><span className={styles.statLabel}>DEX</span><span className={styles.statValue}>{mon.abilities.dex}</span></div>
+                                                            <div className={styles.statBlock}><span className={styles.statLabel}>CON</span><span className={styles.statValue}>{mon.abilities.con}</span></div>
+                                                            <div className={styles.statBlock}><span className={styles.statLabel}>INT</span><span className={styles.statValue}>{mon.abilities.int}</span></div>
+                                                            <div className={styles.statBlock}><span className={styles.statLabel}>WIS</span><span className={styles.statValue}>{mon.abilities.wis}</span></div>
+                                                            <div className={styles.statBlock}><span className={styles.statLabel}>CHA</span><span className={styles.statValue}>{mon.abilities.cha}</span></div>
+                                                        </div>
+                                                    )}
+                                                    {mon.actions && mon.actions.length > 0 && (
+                                                        <div className={styles.npcDialogue}>
+                                                            <span className={styles.npcDetailLabel}>Actions</span>
+                                                            {mon.actions.slice(0, 3).map((a: { name: string; desc: string }, ai: number) => (
+                                                                <div key={ai} className={styles.dialogueLine}>
+                                                                    <strong>{a.name}:</strong> {a.desc}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
                                                     {mon.tactics && (
                                                         <div className={styles.npcDetailRow}>
                                                             <span className={styles.npcDetailLabel}>Tactics</span>
