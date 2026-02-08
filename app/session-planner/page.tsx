@@ -69,7 +69,7 @@ export default function SessionPlannerPage() {
     const [linkedMaps, setLinkedMaps] = useState<Record<number, typeof mapsData[number]>>({});
     const [crTier, setCrTier] = useState(0);
     const [generatedMonsters, setGeneratedMonsters] = useState<MonsterEntry[]>([]);
-    const [lightboxItem, setLightboxItem] = useState<{ type: "npc" | "monster" | "map"; id: string } | null>(null);
+    const [lightboxItem, setLightboxItem] = useState<{ type: "npc" | "monster" | "map" | "generated-npc" | "generated-monster"; id: string; index?: number } | null>(null);
 
     // Load session items from localStorage
     useEffect(() => {
@@ -435,7 +435,7 @@ export default function SessionPlannerPage() {
                                 {generatedNPCs.length > 0 && (
                                     <div className={styles.generatedNPCList}>
                                         {generatedNPCs.map((npc, i) => (
-                                            <div key={i} className={styles.generatedNPC}>
+                                            <div key={i} className={styles.generatedNPC} onClick={() => setLightboxItem({ type: "generated-npc", id: npc.id, index: i })} style={{ cursor: "pointer" }}>
                                                 <div className={styles.generatedNPCHeader}>
                                                     <div>
                                                         <strong className={styles.npcName}>{npc.name}</strong>
@@ -444,10 +444,10 @@ export default function SessionPlannerPage() {
                                                         </span>
                                                     </div>
                                                     <div className={styles.npcActions}>
-                                                        <button className={styles.saveToSessionBtn} onClick={() => saveNPCToSession(npc)} title="Save to Session">
+                                                        <button className={styles.saveToSessionBtn} onClick={(e) => { e.stopPropagation(); saveNPCToSession(npc); }} title="Save to Session">
                                                             Save to Session
                                                         </button>
-                                                        <button className={styles.discardBtn} onClick={() => removeGeneratedNPC(i)} title="Remove NPC">✕</button>
+                                                        <button className={styles.discardBtn} onClick={(e) => { e.stopPropagation(); removeGeneratedNPC(i); }} title="Remove NPC">✕</button>
                                                     </div>
                                                 </div>
 
@@ -527,7 +527,7 @@ export default function SessionPlannerPage() {
                                 {generatedMonsters.length > 0 && (
                                     <div className={styles.generatedNPCList}>
                                         {generatedMonsters.map((mon, i) => (
-                                            <div key={mon.id} className={styles.generatedNPC}>
+                                            <div key={mon.id} className={styles.generatedNPC} onClick={() => setLightboxItem({ type: "generated-monster", id: mon.id, index: i })} style={{ cursor: "pointer" }}>
                                                 <div className={styles.generatedNPCHeader}>
                                                     <div>
                                                         <strong className={styles.npcName}>{mon.name}</strong>
@@ -536,10 +536,10 @@ export default function SessionPlannerPage() {
                                                         </span>
                                                     </div>
                                                     <div className={styles.npcActions}>
-                                                        <button className={styles.saveToSessionBtn} onClick={() => saveMonsterToSession(mon)} title="Save to Session">
+                                                        <button className={styles.saveToSessionBtn} onClick={(e) => { e.stopPropagation(); saveMonsterToSession(mon); }} title="Save to Session">
                                                             Save to Session
                                                         </button>
-                                                        <button className={styles.discardBtn} onClick={() => removeGeneratedMonster(i)} title="Remove">✕</button>
+                                                        <button className={styles.discardBtn} onClick={(e) => { e.stopPropagation(); removeGeneratedMonster(i); }} title="Remove">✕</button>
                                                     </div>
                                                 </div>
                                                 <div className={styles.npcDetails}>
@@ -771,8 +771,10 @@ export default function SessionPlannerPage() {
                 const npc = lightboxItem.type === "npc" ? (npcsData as NpcEntry[]).find((n) => n.id === lightboxItem.id) : null;
                 const mon = lightboxItem.type === "monster" ? (monstersData as MonsterEntry[]).find((m) => m.id === lightboxItem.id) : null;
                 const map = lightboxItem.type === "map" ? mapsData.find((m) => m.id === lightboxItem.id) : null;
+                const genNpc = lightboxItem.type === "generated-npc" && lightboxItem.index !== undefined ? generatedNPCs[lightboxItem.index] : null;
+                const genMon = lightboxItem.type === "generated-monster" && lightboxItem.index !== undefined ? generatedMonsters[lightboxItem.index] : null;
 
-                if (!npc && !mon && !map) { setLightboxItem(null); return null; }
+                if (!npc && !mon && !map && !genNpc && !genMon) { setLightboxItem(null); return null; }
 
                 const calcMod = (score: number) => { const mod = Math.floor((score - 10) / 2); return mod >= 0 ? `+${mod}` : String(mod); };
 
@@ -809,6 +811,39 @@ export default function SessionPlannerPage() {
                                             <div><strong>Greeting:</strong> <em>&ldquo;{npc.dialogue.greeting}&rdquo;</em></div>
                                             <div><strong>Quest:</strong> <em>&ldquo;{npc.dialogue.quest}&rdquo;</em></div>
                                             <div><strong>Farewell:</strong> <em>&ldquo;{npc.dialogue.farewell}&rdquo;</em></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* ── Generated NPC Lightbox ── */}
+                            {genNpc && (
+                                <div className={styles.lightboxBody}>
+                                    <h2 className={styles.lightboxTitle}>{genNpc.name}</h2>
+                                    <p className={styles.lightboxSubtitle}>{genNpc.race} · {genNpc.class} · {genNpc.role}</p>
+
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Appearance</h4>
+                                        <p>{genNpc.appearance}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Personality</h4>
+                                        <p>{genNpc.personality.join(", ")}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Motivation</h4>
+                                        <p>{genNpc.motivation}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Secret</h4>
+                                        <p className={styles.npcSecret}>{genNpc.secret}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Dialogue</h4>
+                                        <div className={styles.lightboxDialogue}>
+                                            <div><strong>Greeting:</strong> <em>&ldquo;{genNpc.dialogue.greeting}&rdquo;</em></div>
+                                            <div><strong>Quest:</strong> <em>&ldquo;{genNpc.dialogue.quest}&rdquo;</em></div>
+                                            <div><strong>Farewell:</strong> <em>&ldquo;{genNpc.dialogue.farewell}&rdquo;</em></div>
                                         </div>
                                     </div>
                                 </div>
@@ -880,6 +915,79 @@ export default function SessionPlannerPage() {
                                         <div className={styles.lightboxSection}>
                                             <h4>DM Tips</h4>
                                             <p className={styles.npcSecret}>{mon.dmTips}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {/* ── Generated Monster Lightbox ── */}
+                            {genMon && (
+                                <div className={styles.lightboxBody}>
+                                    <h2 className={styles.lightboxTitle}>{genMon.name}</h2>
+                                    <p className={styles.lightboxSubtitle}>{genMon.size} {genMon.type}, {genMon.alignment}</p>
+
+                                    <div className={styles.lightboxStatRow}>
+                                        <div><strong>AC</strong> {genMon.ac}{genMon.acType ? ` (${genMon.acType})` : ""}</div>
+                                        <div><strong>HP</strong> {genMon.hp} ({genMon.hitDice})</div>
+                                        <div><strong>Speed</strong> {genMon.speed}</div>
+                                    </div>
+
+                                    {genMon.abilities && (
+                                        <div className={styles.lightboxAbilities}>
+                                            {(["str", "dex", "con", "int", "wis", "cha"] as const).map((key) => {
+                                                const val = (genMon.abilities as Record<string, number>)[key];
+                                                return (
+                                                    <div key={key} className={styles.abilityCell}>
+                                                        <span className={styles.abilityLabel}>{key.toUpperCase()}</span>
+                                                        <span>{val} ({calcMod(val)})</span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+
+                                    {genMon.savingThrows && <p className={styles.lightboxDetail}><strong>Saves:</strong> {genMon.savingThrows}</p>}
+                                    {genMon.skills && <p className={styles.lightboxDetail}><strong>Skills:</strong> {genMon.skills}</p>}
+                                    <p className={styles.lightboxDetail}><strong>Senses:</strong> {genMon.senses}</p>
+                                    <p className={styles.lightboxDetail}><strong>Languages:</strong> {genMon.languages}</p>
+                                    <p className={styles.lightboxDetail}><strong>CR:</strong> {genMon.cr} ({genMon.xp} XP)</p>
+
+                                    {genMon.traits && genMon.traits.length > 0 && (
+                                        <div className={styles.lightboxSection}>
+                                            <h4>Traits</h4>
+                                            {genMon.traits.map((t) => (
+                                                <p key={t.name} className={styles.lightboxDetail}><strong><em>{t.name}.</em></strong> {t.desc}</p>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Actions</h4>
+                                        {genMon.actions.map((a) => (
+                                            <p key={a.name} className={styles.lightboxDetail}><strong><em>{a.name}.</em></strong> {a.desc}</p>
+                                        ))}
+                                    </div>
+
+                                    {genMon.legendaryActions && genMon.legendaryActions.length > 0 && (
+                                        <div className={styles.lightboxSection}>
+                                            <h4>Legendary Actions</h4>
+                                            {genMon.legendaryActions.map((la) => (
+                                                <p key={la.name} className={styles.lightboxDetail}><strong><em>{la.name}.</em></strong> {la.desc}</p>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {genMon.tactics && (
+                                        <div className={styles.lightboxSection}>
+                                            <h4>Tactics</h4>
+                                            <p>{genMon.tactics}</p>
+                                        </div>
+                                    )}
+
+                                    {genMon.dmTips && (
+                                        <div className={styles.lightboxSection}>
+                                            <h4>DM Tips</h4>
+                                            <p className={styles.npcSecret}>{genMon.dmTips}</p>
                                         </div>
                                     )}
                                 </div>

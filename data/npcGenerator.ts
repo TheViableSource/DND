@@ -231,11 +231,28 @@ function pick<T>(arr: T[]): T {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
+const appearanceTemplates = [
+    "A weathered figure with sharp eyes and calloused hands, carrying themselves with quiet confidence.",
+    "Lean and wiry, with an intense gaze that seems to see right through you. A faded scar runs along one cheek.",
+    "Tall and imposing, dressed in practical traveling clothes. Their voice carries natural authority.",
+    "A compact figure with keen, watchful eyes and an easy smile that doesn't quite reach them.",
+    "Broad-shouldered with sun-darkened skin, they move with the deliberate grace of someone used to danger.",
+    "Slight of build but radiating an unmistakable aura of power. Their robes are immaculate.",
+    "Grizzled and battle-scarred, with silver streaking their hair. They walk with a slight limp.",
+    "Youthful but serious, with ink-stained fingers and an ever-present leather journal at their hip.",
+    "Imposing presence, draped in rich fabrics and adorned with subtle but expensive jewelry.",
+    "Wiry and restless, always fidgeting with something. Their eyes dart constantly, missing nothing.",
+    "Stocky and strong, with a booming voice and a hearty laugh. Smells faintly of wood smoke.",
+    "Elegant and poised, with an aristocratic bearing. Speaks softly but commands attention effortlessly.",
+];
+
 export interface GeneratedNPC {
+    id: string;
     name: string;
     race: string;
     role: string;
     class: string;
+    appearance: string;
     personality: string[];
     motivation: string;
     secret: string;
@@ -254,10 +271,12 @@ export function generateNPC(role: string): GeneratedNPC {
     const dlg = dialogueTemplates[role] || dialogueTemplates.Neutral;
 
     return {
+        id: `gen-npc-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         name,
         race,
         role,
         class: cls,
+        appearance: pick(appearanceTemplates),
         personality,
         motivation,
         secret,
