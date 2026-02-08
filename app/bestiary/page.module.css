@@ -110,12 +110,16 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space-xl);
     align-items: start;
+    max-height: calc(100vh - 260px);
 }
 
 .grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-md);
+    max-height: calc(100vh - 260px);
+    overflow-y: auto;
+    padding-right: var(--space-sm);
 }
 
 .monsterCard {
@@ -191,7 +195,10 @@
 /* Detail */
 .detail {
     position: sticky;
-    top: calc(var(--navbar-height) + var(--space-lg));
+    top: 0;
+    max-height: calc(100vh - 260px);
+    overflow-y: auto;
+    padding-right: var(--space-sm);
 }
 
 .dmSection {
@@ -232,9 +239,223 @@
     color: var(--color-gold);
 }
 
+/* ─── Encounter Beast Cards ─── */
+.encounterCards {
+    margin-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-lg);
+}
+
+.encounterCards h4 {
+    color: var(--color-gold-bright);
+    margin-bottom: var(--space-xs);
+}
+
+.encounterCardsHint {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-bottom: var(--space-md);
+}
+
+.encounterCardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+}
+
+.encounterCardWrapper {
+    position: relative;
+}
+
+.encounterCardCount {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    z-index: 2;
+    background: var(--color-blood-red);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+}
+
+.encounterCard {
+    background: linear-gradient(145deg, var(--color-bg-card), var(--color-bg-dark));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.encounterCard:hover {
+    border-color: var(--color-gold-dim);
+    box-shadow: 0 0 15px rgba(212, 165, 116, 0.1);
+}
+
+.encounterCardExpanded {
+    grid-column: 1 / -1;
+    border-color: var(--color-gold-dim);
+    box-shadow: var(--shadow-glow-gold);
+}
+
+.encounterCardHeader {
+    width: 100%;
+    text-align: left;
+    padding: var(--space-md);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+}
+
+.encounterCardTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-xs);
+}
+
+.encounterCardTitle h4 {
+    font-size: 1rem;
+    color: var(--color-text-heading);
+    margin: 0;
+}
+
+.encounterCardMeta {
+    display: flex;
+    gap: var(--space-md);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.expandHint {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+.encounterStatBlock {
+    padding: 0 var(--space-md) var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.encounterStatBlock .stat-block {
+    margin-top: var(--space-md);
+}
+
+/* ─── Monster Actions Row ─── */
+.monsterActions {
+    display: flex;
+    border-top: 1px solid var(--color-border);
+}
+
+.monsterActions .addEncounterBtn {
+    flex: 1;
+    border-top: none;
+}
+
+.addSessionBtn {
+    flex: 1;
+    padding: var(--space-sm);
+    background: rgba(123, 45, 142, 0.08);
+    border: none;
+    border-left: 1px solid var(--color-border);
+    color: var(--color-arcane-purple-bright);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: background var(--transition-fast);
+}
+
+.addSessionBtn:hover {
+    background: rgba(123, 45, 142, 0.15);
+}
+
+/* ─── Toast ─── */
+.toast {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    z-index: 9999;
+    background: linear-gradient(135deg, var(--color-bg-card), var(--color-bg-dark));
+    border: 1px solid var(--color-gold-dim);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-xl);
+    color: var(--color-text-heading);
+    font-size: 0.9rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    animation: toastIn 0.3s ease-out;
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Save Monster ─── */
+.savedBadge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gold-bright);
+    background: rgba(212, 165, 116, 0.15);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    padding: 2px 8px;
+    border-radius: 100px;
+}
+
+.saveMonsterBtn {
+    flex: 1;
+    padding: var(--space-sm);
+    background: rgba(212, 165, 116, 0.08);
+    border: none;
+    border-left: 1px solid var(--color-border);
+    color: var(--color-gold);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: background var(--transition-fast);
+}
+
+.saveMonsterBtn:hover {
+    background: rgba(212, 165, 116, 0.15);
+}
+
+.detailActions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.detailActions .saveMonsterBtn,
+.detailActions .addSessionBtn {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+}
+
 @media (max-width: 900px) {
     .layout {
         grid-template-columns: 1fr;
+        max-height: none;
+    }
+
+    .grid {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
     }
 
     .detail {
@@ -247,5 +468,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-height: none;
+    }
+
+    .encounterCardsGrid {
+        grid-template-columns: 1fr;
     }
 }

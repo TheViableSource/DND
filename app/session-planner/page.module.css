@@ -142,6 +142,127 @@
     cursor: not-allowed;
 }
 
+/* ─── Saved Items Banner ─── */
+.savedItemsBanner {
+    background: linear-gradient(145deg, var(--color-bg-card), var(--color-bg-dark));
+    border: 1px solid rgba(123, 45, 142, 0.3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    box-shadow: 0 0 20px rgba(123, 45, 142, 0.08);
+}
+
+.savedItemsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-xs);
+}
+
+.savedItemsHeader h3 {
+    font-size: 1rem;
+    color: var(--color-arcane-purple-bright);
+    margin: 0;
+}
+
+.savedItemsHint {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-bottom: var(--space-md);
+}
+
+.savedItemsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-sm);
+}
+
+.savedItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg-dark);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+}
+
+.savedItemInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.savedItemType {
+    font-size: 1.2rem;
+}
+
+.savedItemDetail {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.savedItemRemove {
+    background: none;
+    border: none;
+    color: var(--color-blood-red-bright);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 2px 6px;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
+}
+
+.savedItemRemove:hover {
+    opacity: 1;
+}
+
+.clearAllBtn {
+    background: none;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    color: var(--color-blood-red-bright);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    transition: all var(--transition-fast);
+}
+
+.clearAllBtn:hover {
+    background: rgba(139, 0, 0, 0.1);
+}
+
+/* ─── Saved Section (within steps) ─── */
+.savedSection {
+    background: rgba(123, 45, 142, 0.05);
+    border: 1px solid rgba(123, 45, 142, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.savedSection .subhead {
+    margin-bottom: var(--space-sm);
+}
+
+.savedList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.savedListItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-bg-dark);
+    border-radius: var(--radius-sm);
+}
+
 @media (max-width: 768px) {
     .progress {
         gap: 4px;
@@ -154,5 +275,545 @@
 
     .progressLabel {
         font-size: 0.65rem;
+    }
+
+    .savedItemsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .fieldWithRand {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .randBtn {
+        align-self: flex-end;
+    }
+}
+
+/* ─── Randomizer Buttons ─── */
+.fieldWithRand {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-end;
+    margin-bottom: var(--space-md);
+}
+
+.fieldWithRand .label {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.fieldWithRand .subhead {
+    margin-bottom: 0;
+}
+
+.fieldWithRand .input,
+.fieldWithRand input {
+    flex: 1;
+}
+
+.randBtn {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background: rgba(212, 165, 116, 0.1);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--color-gold);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+.randBtn:hover {
+    background: rgba(212, 165, 116, 0.2);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.15);
+    transform: scale(1.05);
+}
+
+.randBtn:active {
+    transform: scale(0.95);
+}
+
+.btnRow {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+    margin-bottom: var(--space-lg);
+}
+
+/* ─── Field Row (input + buttons) ─── */
+.fieldRow {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-end;
+    margin-bottom: var(--space-sm);
+}
+
+.fieldRow .label,
+.fieldRow input {
+    flex: 1;
+}
+
+/* ─── Delete Button ─── */
+.deleteItemBtn {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(200, 60, 60, 0.08);
+    border: 1px solid rgba(200, 60, 60, 0.2);
+    border-radius: var(--radius-md);
+    color: rgba(200, 100, 100, 0.7);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all var(--transition-fast);
+}
+
+.deleteItemBtn:hover {
+    background: rgba(200, 60, 60, 0.2);
+    border-color: rgba(200, 60, 60, 0.5);
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+/* ─── NPC Generator Panel ─── */
+.generatorPanel {
+    background: linear-gradient(145deg, rgba(123, 45, 142, 0.06), rgba(212, 165, 116, 0.04));
+    border: 1px solid rgba(123, 45, 142, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.generatorHint {
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    margin-bottom: var(--space-md);
+}
+
+.generatorControls {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.roleSelect {
+    padding: 10px 16px;
+    background: var(--color-bg-dark);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--color-text-heading);
+    font-size: 0.9rem;
+    cursor: pointer;
+    min-width: 180px;
+}
+
+.roleSelect:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.15);
+}
+
+.generateNpcBtn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(123, 45, 142, 0.2), rgba(212, 165, 116, 0.15));
+    border: 1px solid rgba(212, 165, 116, 0.4);
+    border-radius: var(--radius-md);
+    color: var(--color-gold);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.generateNpcBtn:hover {
+    background: linear-gradient(135deg, rgba(123, 45, 142, 0.3), rgba(212, 165, 116, 0.25));
+    border-color: var(--color-gold);
+    box-shadow: 0 0 15px rgba(212, 165, 116, 0.2);
+    transform: translateY(-1px);
+}
+
+/* ─── Generated NPC Cards ─── */
+.generatedNPCList {
+    margin-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.generatedNPC {
+    background: var(--color-bg-dark);
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    transition: border-color var(--transition-fast);
+}
+
+.generatedNPC:hover {
+    border-color: rgba(212, 165, 116, 0.35);
+}
+
+.generatedNPCHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-sm);
+}
+
+.npcName {
+    font-size: 1.05rem;
+    color: var(--color-text-heading);
+    display: block;
+}
+
+.npcMeta {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+}
+
+.npcRole {
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.roleAlly {
+    background: rgba(76, 175, 80, 0.15);
+    color: #81c784;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.roleAntagonist {
+    background: rgba(244, 67, 54, 0.15);
+    color: #ef5350;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.roleQuestGiver {
+    background: rgba(212, 165, 116, 0.15);
+    color: var(--color-gold);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+.roleNeutral {
+    background: rgba(158, 158, 158, 0.15);
+    color: #bdbdbd;
+    border: 1px solid rgba(158, 158, 158, 0.3);
+}
+
+.npcDetails {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.npcDetailRow {
+    font-size: 0.85rem;
+    color: var(--color-text-body);
+    line-height: 1.5;
+}
+
+.npcDetailLabel {
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.npcSecret {
+    color: rgba(200, 100, 100, 0.9);
+    font-style: italic;
+}
+
+.npcDialogue {
+    margin-top: var(--space-xs);
+    font-size: 0.85rem;
+}
+
+.dialogueLine {
+    color: var(--color-text-body);
+    padding-left: var(--space-sm);
+    border-left: 2px solid rgba(212, 165, 116, 0.2);
+    margin-bottom: 4px;
+    font-size: 0.83rem;
+    line-height: 1.5;
+}
+
+/* ─── Linked Map Tag ─── */
+.linkedMapTag {
+    background: rgba(76, 175, 80, 0.08);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    color: #81c784;
+    margin-bottom: var(--space-md);
+    margin-top: -2px;
+}
+
+/* ─── Export Summary ─── */
+.exportSummary {
+    background: rgba(212, 165, 116, 0.06);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.exportSummary h4 {
+    font-size: 0.9rem;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-xs);
+}
+
+.exportSummary p {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    margin: 4px 0;
+}
+
+/* ─── Saved Item Clickable ─── */
+.savedItemClickable {
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    flex: 1;
+}
+
+.savedItemClickable:hover {
+    color: var(--color-gold);
+    text-decoration: underline;
+    text-decoration-color: rgba(212, 165, 116, 0.4);
+    text-underline-offset: 2px;
+}
+
+/* ─── Lightbox Modal ─── */
+.lightboxOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl);
+    animation: fadeIn 0.2s ease;
+}
+
+.lightboxContent {
+    position: relative;
+    background: linear-gradient(145deg, var(--color-bg-card), var(--color-bg-dark));
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: var(--radius-lg);
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 165, 116, 0.08);
+    animation: slideUp 0.25s ease;
+}
+
+.lightboxClose {
+    position: sticky;
+    top: 0;
+    float: right;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    margin: var(--space-md) var(--space-md) 0 0;
+    z-index: 10;
+}
+
+.lightboxClose:hover {
+    background: rgba(212, 165, 116, 0.2);
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+.lightboxBody {
+    padding: var(--space-lg) var(--space-xl) var(--space-xl);
+}
+
+.lightboxTitle {
+    font-size: 1.6rem;
+    color: var(--color-text-heading);
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-heading);
+}
+
+.lightboxSubtitle {
+    font-size: 0.9rem;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-lg);
+    opacity: 0.85;
+}
+
+.lightboxSection {
+    margin-bottom: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(212, 165, 116, 0.1);
+}
+
+.lightboxSection h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gold);
+    margin: 0 0 var(--space-sm);
+}
+
+.lightboxSection p {
+    font-size: 0.88rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    margin: 0 0 var(--space-xs);
+}
+
+.lightboxSection ul {
+    list-style: disc;
+    padding-left: var(--space-lg);
+    font-size: 0.88rem;
+    color: var(--color-text-body);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.lightboxSection ul li {
+    margin-bottom: var(--space-xs);
+}
+
+.lightboxDetail {
+    font-size: 0.85rem;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin: 2px 0;
+}
+
+.lightboxStatRow {
+    display: flex;
+    gap: var(--space-xl);
+    font-size: 0.88rem;
+    color: var(--color-text-body);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+}
+
+.lightboxStatRow strong {
+    color: var(--color-gold);
+    margin-right: 4px;
+}
+
+.lightboxAbilities {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-xs);
+    text-align: center;
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+}
+
+.abilityCell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.82rem;
+    color: var(--color-text-body);
+}
+
+.abilityLabel {
+    font-weight: 700;
+    color: var(--color-gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+}
+
+.lightboxDialogue {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.lightboxDialogue em {
+    color: var(--color-text-muted);
+}
+
+.lightboxBlockquote {
+    font-style: italic;
+    color: var(--color-text-muted);
+    background: rgba(212, 165, 116, 0.06);
+    border-left: 3px solid var(--color-gold);
+    padding: var(--space-sm) var(--space-md);
+    margin: 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    line-height: 1.65;
+    font-size: 0.88rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .lightboxContent {
+        max-height: 90vh;
+        margin: var(--space-md);
+    }
+
+    .lightboxAbilities {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .lightboxStatRow {
+        flex-wrap: wrap;
+        gap: var(--space-sm);
     }
 }

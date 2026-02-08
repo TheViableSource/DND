@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import monstersData from "@/data/monsters.json";
+import { addSessionItem } from "@/lib/sessionStorage";
 import styles from "./page.module.css";
 
 const types = ["All", ...Array.from(new Set(monstersData.map((m) => m.type)))];
@@ -40,6 +41,130 @@ function calcEncounterDifficulty(partySize: number, partyLevel: number) {
     };
 }
 
+/* ─── Stat Block Mini Component ─── */
+function StatBlockCard({
+    monster,
+    onClose,
+}: {
+    monster: (typeof monstersData)[number];
+    onClose: () => void;
+}) {
+    return (
+        <div className={styles.encounterCard}>
+            <button className={styles.encounterCardHeader} onClick={onClose}>
+                <div className={styles.encounterCardTitle}>
+                    <h4>{monster.name}</h4>
+                    <span className={`badge badge-gold`}>CR {crLabel(monster.cr)}</span>
+                </div>
+                <div className={styles.encounterCardMeta}>
+                    <span>AC {monster.ac}</span>
+                    <span>HP {monster.hp}</span>
+                    <span>{monster.xp} XP</span>
+                </div>
+                <span className={styles.expandHint}>Click to toggle stat block</span>
+            </button>
+        </div>
+    );
+}
+
+function ExpandedStatBlock({
+    monster,
+    onCollapse,
+}: {
+    monster: (typeof monstersData)[number];
+    onCollapse: () => void;
+}) {
+    return (
+        <div className={`${styles.encounterCard} ${styles.encounterCardExpanded}`}>
+            <button className={styles.encounterCardHeader} onClick={onCollapse}>
+                <div className={styles.encounterCardTitle}>
+                    <h4>{monster.name}</h4>
+                    <span className={`badge badge-gold`}>CR {crLabel(monster.cr)}</span>
+                </div>
+                <span className={styles.expandHint}>Click to collapse ▲</span>
+            </button>
+            <div className={styles.encounterStatBlock}>
+                <div className="stat-block">
+                    <h3>{monster.name}</h3>
+                    <p className="creature-type">{monster.size} {monster.type}, {monster.alignment}</p>
+                    <hr className="stat-divider" />
+                    <p className="stat-line"><strong>Armor Class</strong> {monster.ac} {monster.acType ? `(${monster.acType})` : ""}</p>
+                    <p className="stat-line"><strong>Hit Points</strong> {monster.hp} ({monster.hitDice})</p>
+                    <p className="stat-line"><strong>Speed</strong> {monster.speed}</p>
+                    <hr className="stat-divider" />
+                    <div className="ability-scores">
+                        {Object.entries(monster.abilities).map(([key, val]) => (
+                            <div key={key} className="ability">
+                                <span className="ability-label">{key}</span>
+                                <span className="ability-value">{val} ({calcModifier(val)})</span>
+                            </div>
+                        ))}
+                    </div>
+                    <hr className="stat-divider" />
+                    {monster.savingThrows && <p className="stat-line"><strong>Saving Throws</strong> {monster.savingThrows}</p>}
+                    {monster.skills && <p className="stat-line"><strong>Skills</strong> {monster.skills}</p>}
+                    {monster.vulnerabilities && <p className="stat-line"><strong>Damage Vulnerabilities</strong> {monster.vulnerabilities}</p>}
+                    {monster.resistances && <p className="stat-line"><strong>Damage Resistances</strong> {monster.resistances}</p>}
+                    {monster.immunities && <p className="stat-line"><strong>Damage Immunities</strong> {monster.immunities}</p>}
+                    {monster.conditionImmunities && <p className="stat-line"><strong>Condition Immunities</strong> {monster.conditionImmunities}</p>}
+                    <p className="stat-line"><strong>Senses</strong> {monster.senses}</p>
+                    <p className="stat-line"><strong>Languages</strong> {monster.languages}</p>
+                    <p className="stat-line"><strong>Challenge</strong> {crLabel(monster.cr)} ({monster.xp} XP)</p>
+                    <hr className="stat-divider" />
+
+                    {monster.traits && monster.traits.length > 0 && (
+                        <>
+                            {monster.traits.map((t) => (
+                                <p key={t.name} className="stat-line"><span className="action-name">{t.name}.</span> {t.desc}</p>
+                            ))}
+                            <hr className="stat-divider" />
+                        </>
+                    )}
+
+                    <h4 style={{ color: "#7a200d", fontFamily: "var(--font-heading)", marginBottom: "8px" }}>Actions</h4>
+                    {monster.actions.map((a) => (
+                        <p key={a.name} className="stat-line"><span className="action-name">{a.name}.</span> {a.desc}</p>
+                    ))}
+
+                    {monster.legendaryActions && monster.legendaryActions.length > 0 && (
+                        <>
+                            <hr className="stat-divider" />
+                            <h4 style={{ color: "#7a200d", fontFamily: "var(--font-heading)", marginBottom: "8px" }}>Legendary Actions</h4>
+                            {monster.legendaryActions.map((la) => (
+                                <p key={la.name} className="stat-line"><span className="action-name">{la.name}.</span> {la.desc}</p>
+                            ))}
+                        </>
+                    )}
+                </div>
+
+                {/* Tactics & DM Tips */}
+                <div className={styles.dmSection}>
+                    <h4>⚔️ Tactics</h4>
+                    <p>{monster.tactics}</p>
+                </div>
+                <div className={styles.dmSection}>
+                    <h4>💡 DM Tips</h4>
+                    <p>{monster.dmTips}</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+const SAVED_MONSTERS_KEY = "dnd-saved-monsters";
+
+function loadSavedMonsterIds(): string[] {
+    if (typeof window === "undefined") return [];
+    try {
+        const raw = localStorage.getItem(SAVED_MONSTERS_KEY);
+        return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+}
+
+function saveSavedMonsterIds(ids: string[]) {
+    localStorage.setItem(SAVED_MONSTERS_KEY, JSON.stringify(ids));
+}
+
 export default function BestiaryPage() {
     const [search, setSearch] = useState("");
     const [typeFilter, setTypeFilter] = useState("All");
@@ -49,6 +174,14 @@ export default function BestiaryPage() {
     const [partySize, setPartySize] = useState(4);
     const [partyLevel, setPartyLevel] = useState(3);
     const [encounterMonsters, setEncounterMonsters] = useState<string[]>([]);
+    const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
+    const [sessionToast, setSessionToast] = useState<string | null>(null);
+    const [savedMonsterIds, setSavedMonsterIds] = useState<string[]>([]);
+
+    // Load saved monster ids on mount
+    useEffect(() => {
+        setSavedMonsterIds(loadSavedMonsterIds());
+    }, []);
 
     const filtered = monstersData.filter((m) => {
         const matchSearch = m.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -91,6 +224,58 @@ export default function BestiaryPage() {
         setEncounterMonsters((prev) => prev.filter((_, i) => i !== index));
     };
 
+    const toggleCard = useCallback((id: string) => {
+        setExpandedCards((prev) => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    }, []);
+
+    const randomMonster = useCallback(() => {
+        const random = monstersData[Math.floor(Math.random() * monstersData.length)];
+        setSelectedMonster(random.id);
+    }, []);
+
+    const showToast = useCallback((msg: string) => {
+        setSessionToast(msg);
+        setTimeout(() => setSessionToast(null), 2000);
+    }, []);
+
+    const addMonsterToSession = useCallback((mon: (typeof monstersData)[number]) => {
+        const added = addSessionItem({
+            id: mon.id,
+            type: "monster",
+            name: mon.name,
+            detail: `CR ${crLabel(mon.cr)} · ${mon.type} · ${mon.xp} XP`,
+        });
+        showToast(added ? `✅ ${mon.name} added to session plan` : `⚠️ ${mon.name} already in session plan`);
+    }, [showToast]);
+
+    const toggleSaveMonster = useCallback((id: string) => {
+        setSavedMonsterIds((prev) => {
+            const isSaved = prev.includes(id);
+            const next = isSaved ? prev.filter((i) => i !== id) : [...prev, id];
+            saveSavedMonsterIds(next);
+            const mon = monstersData.find((m) => m.id === id);
+            showToast(isSaved ? `🗑️ ${mon?.name} removed from saved` : `💾 ${mon?.name} saved to library`);
+            return next;
+        });
+    }, [showToast]);
+
+    // Unique encounter monsters for cards (deduplicated with count)
+    const encounterCreatures = useMemo(() => {
+        const counts: Record<string, number> = {};
+        for (const id of encounterMonsters) {
+            counts[id] = (counts[id] || 0) + 1;
+        }
+        return Object.entries(counts).map(([id, count]) => ({
+            monster: monstersData.find((m) => m.id === id)!,
+            count,
+        })).filter((e) => e.monster);
+    }, [encounterMonsters]);
+
     return (
         <div className="page-content">
             <div className="container">
@@ -102,6 +287,11 @@ export default function BestiaryPage() {
                     </p>
                 </div>
 
+                {/* Toast */}
+                {sessionToast && (
+                    <div className={styles.toast}>{sessionToast}</div>
+                )}
+
                 {/* Encounter Builder Toggle */}
                 <div className={styles.encounterToggle}>
                     <button
@@ -109,6 +299,9 @@ export default function BestiaryPage() {
                         onClick={() => setShowEncounter(!showEncounter)}
                     >
                         ⚔️ {showEncounter ? "Hide" : "Show"} Encounter Builder
+                    </button>
+                    <button className="btn btn-secondary" onClick={randomMonster} style={{ marginLeft: "12px" }}>
+                        🎲 Random Monster
                     </button>
                 </div>
 
@@ -179,6 +372,35 @@ export default function BestiaryPage() {
                                 </>
                             )}
                         </div>
+
+                        {/* ─── Encounter Beast Cards ─── */}
+                        {encounterCreatures.length > 0 && (
+                            <div className={styles.encounterCards}>
+                                <h4>Encounter Creatures</h4>
+                                <p className={styles.encounterCardsHint}>Click a card to view stat block &amp; how to play</p>
+                                <div className={styles.encounterCardsGrid}>
+                                    {encounterCreatures.map(({ monster, count }) =>
+                                        expandedCards.has(monster.id) ? (
+                                            <ExpandedStatBlock
+                                                key={monster.id}
+                                                monster={monster}
+                                                onCollapse={() => toggleCard(monster.id)}
+                                            />
+                                        ) : (
+                                            <div key={monster.id} className={styles.encounterCardWrapper}>
+                                                {count > 1 && (
+                                                    <span className={styles.encounterCardCount}>×{count}</span>
+                                                )}
+                                                <StatBlockCard
+                                                    monster={monster}
+                                                    onClose={() => toggleCard(monster.id)}
+                                                />
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
 
@@ -217,7 +439,10 @@ export default function BestiaryPage() {
                                 <button className={styles.monsterBtn} onClick={() => setSelectedMonster(mon.id)}>
                                     <div className={styles.monsterHeader}>
                                         <h3>{mon.name}</h3>
-                                        <span className="badge badge-gold">CR {crLabel(mon.cr)}</span>
+                                        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                                            {savedMonsterIds.includes(mon.id) && <span className={styles.savedBadge}>SAVED</span>}
+                                            <span className="badge badge-gold">CR {crLabel(mon.cr)}</span>
+                                        </div>
                                     </div>
                                     <p className={styles.monsterMeta}>{mon.size} {mon.type} · {mon.alignment}</p>
                                     <div className={styles.monsterQuickStats}>
@@ -226,11 +451,19 @@ export default function BestiaryPage() {
                                         <span>{mon.xp} XP</span>
                                     </div>
                                 </button>
-                                {showEncounter && (
-                                    <button className={styles.addEncounterBtn} onClick={() => addToEncounter(mon.id)}>
-                                        + Add to Encounter
+                                <div className={styles.monsterActions}>
+                                    {showEncounter && (
+                                        <button className={styles.addEncounterBtn} onClick={() => addToEncounter(mon.id)}>
+                                            + Add to Encounter
+                                        </button>
+                                    )}
+                                    <button className={styles.saveMonsterBtn} onClick={() => toggleSaveMonster(mon.id)}>
+                                        {savedMonsterIds.includes(mon.id) ? "★ Saved" : "☆ Save"}
                                     </button>
-                                )}
+                                    <button className={styles.addSessionBtn} onClick={() => addMonsterToSession(mon)}>
+                                        📋 Session
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -299,6 +532,15 @@ export default function BestiaryPage() {
                             <div className={styles.dmSection}>
                                 <h4>💡 DM Tips</h4>
                                 <p>{active.dmTips}</p>
+                            </div>
+
+                            <div className={styles.detailActions}>
+                                <button className={styles.saveMonsterBtn} onClick={() => toggleSaveMonster(active.id)} style={{ flex: 1 }}>
+                                    {savedMonsterIds.includes(active.id) ? "★ Saved" : "☆ Save to Library"}
+                                </button>
+                                <button className={styles.addSessionBtn} onClick={() => addMonsterToSession(active)} style={{ flex: 1 }}>
+                                    📋 Add to Session
+                                </button>
                             </div>
 
                             <button className={styles.closeBtn} onClick={() => setSelectedMonster(null)}>
