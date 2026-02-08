@@ -3,6 +3,7 @@ import monstersData from "@/data/monsters.json";
 import npcsData from "@/data/npcs.json";
 import { SessionItem } from "@/lib/sessionStorage";
 import { GeneratedNPC } from "@/data/npcGenerator";
+import { renderMapToDataURLs, type MapRenderInput } from "@/lib/mapRenderer";
 
 /* ─── Helpers ─── */
 function crLabel(cr: number): string {
@@ -581,7 +582,66 @@ export function exportSessionPDF(
     }
 
     uniqueMaps.forEach((map) => {
-        // Start a fresh page for each map
+        /* ── PAGE 1: FULL-PAGE MAP IMAGE ── */
+        try {
+            const renderInput: MapRenderInput = {
+                id: map.id,
+                name: map.name,
+                environment: map.environment,
+                gridSize: map.gridSize,
+                difficulty: map.difficulty,
+                keyFeatures: map.keyFeatures || [],
+            };
+            const dataURLs = renderMapToDataURLs(renderInput);
+
+            for (let fi = 0; fi < dataURLs.length; fi++) {
+                pdf.addPage();
+                y = margin;
+                drawPageBorder();
+
+                // Title bar
+                pdf.setFillColor(40, 30, 20);
+                pdf.rect(margin, y, contentW, 14, "F");
+                pdf.setDrawColor(180, 140, 80);
+                pdf.setLineWidth(0.5);
+                pdf.line(margin, y, margin + contentW, y);
+                pdf.line(margin, y + 14, margin + contentW, y + 14);
+                pdf.setFont("helvetica", "bold");
+                pdf.setFontSize(16);
+                pdf.setTextColor(220, 185, 120);
+                const floorLabel = dataURLs.length > 1 ? ` — Floor ${fi + 1}` : "";
+                pdf.text("MAP: " + map.name.toUpperCase() + floorLabel, margin + 4, y + 10);
+                y += 18;
+
+                // Embed the rendered map image
+                const imgData = dataURLs[fi];
+                // Calculate dimensions to fit within content area while keeping aspect ratio
+                const maxImgW = contentW;
+                const maxImgH = pageH - y - margin - 10;
+                // The canvas is roughly 4:3 aspect
+                const imgAspect = 1.25; // width / height (rough)
+                let imgW = maxImgW;
+                let imgH = imgW / imgAspect;
+                if (imgH > maxImgH) {
+                    imgH = maxImgH;
+                    imgW = imgH * imgAspect;
+                }
+                const imgX = margin + (contentW - imgW) / 2;
+                pdf.addImage(imgData, "PNG", imgX, y, imgW, imgH);
+                y += imgH + 4;
+
+                // Small attribution line
+                pdf.setFont("helvetica", "normal");
+                pdf.setFontSize(7);
+                pdf.setTextColor(150, 130, 100);
+                pdf.text("1 square = 5 ft  |  " + map.environment + "  |  " + map.gridSize + "  |  " + map.difficulty, pageW / 2, y, { align: "center" });
+            }
+        } catch (e) {
+            // If canvas rendering fails (e.g. SSR), skip the image page
+            console.warn("Map image rendering failed for", map.name, e);
+        }
+
+        /* ── PAGE 2: TEXT REFERENCE SHEET ── */
         pdf.addPage();
         y = margin;
         drawPageBorder();
