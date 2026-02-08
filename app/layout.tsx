@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "DM's Tome — D&D Campaign Manager",
+  title: "DM's Tome | D&D Campaign Manager",
   description:
     "Everything a new Dungeon Master needs to run an engaging D&D campaign. Session planning, NPC scripts, monster stat blocks, map suggestions, and story arc templates.",
   keywords: [
