@@ -62,7 +62,34 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <div className={styles.heroIcon}>🎲</div>
+          <div className={styles.heroIcon}>
+            <svg viewBox="0 0 100 100" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+              {/* d20 icosahedron shape */}
+              <defs>
+                <linearGradient id="d20grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#d4a574" />
+                  <stop offset="50%" stopColor="#b8860b" />
+                  <stop offset="100%" stopColor="#8b6914" />
+                </linearGradient>
+                <filter id="d20glow">
+                  <feGaussianBlur stdDeviation="2" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              {/* Outer shape */}
+              <polygon points="50,2 95,30 95,70 50,98 5,70 5,30" fill="url(#d20grad)" stroke="#ffd700" strokeWidth="1.5" filter="url(#d20glow)" />
+              {/* Inner facets */}
+              <line x1="50" y1="2" x2="50" y2="98" stroke="#ffd700" strokeWidth="0.5" opacity="0.5" />
+              <line x1="5" y1="30" x2="95" y2="70" stroke="#ffd700" strokeWidth="0.5" opacity="0.5" />
+              <line x1="95" y1="30" x2="5" y2="70" stroke="#ffd700" strokeWidth="0.5" opacity="0.5" />
+              <line x1="50" y1="2" x2="5" y2="70" stroke="#ffd700" strokeWidth="0.5" opacity="0.4" />
+              <line x1="50" y1="2" x2="95" y2="70" stroke="#ffd700" strokeWidth="0.5" opacity="0.4" />
+              <line x1="50" y1="98" x2="5" y2="30" stroke="#ffd700" strokeWidth="0.5" opacity="0.4" />
+              <line x1="50" y1="98" x2="95" y2="30" stroke="#ffd700" strokeWidth="0.5" opacity="0.4" />
+              {/* Number 20 */}
+              <text x="50" y="56" textAnchor="middle" fill="#1a0a2e" fontSize="24" fontWeight="bold" fontFamily="serif">20</text>
+            </svg>
+          </div>
           <h1 className={styles.heroTitle}>Your Adventure Begins Here</h1>
           <p className={styles.heroSubtitle}>
             Everything a new Dungeon Master needs to run an epic D&amp;D campaign.
