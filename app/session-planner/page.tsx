@@ -69,6 +69,7 @@ export default function SessionPlannerPage() {
     const [linkedMaps, setLinkedMaps] = useState<Record<number, typeof mapsData[number]>>({});
     const [crTier, setCrTier] = useState(0);
     const [generatedMonsters, setGeneratedMonsters] = useState<MonsterEntry[]>([]);
+    const [savedGeneratedNPCData, setSavedGeneratedNPCData] = useState<Record<string, GeneratedNPC>>({});
     const [lightboxItem, setLightboxItem] = useState<{ type: "npc" | "monster" | "map" | "generated-npc" | "generated-monster"; id: string; index?: number } | null>(null);
 
     // Load session items from localStorage
@@ -228,8 +229,10 @@ export default function SessionPlannerPage() {
     };
 
     const saveNPCToSession = (npc: GeneratedNPC) => {
+        const sessionId = `gen-${npc.name.replace(/\s/g, "-").toLowerCase()}-${Date.now()}`;
+        setSavedGeneratedNPCData((prev) => ({ ...prev, [sessionId]: npc }));
         addSessionItem({
-            id: `gen-${npc.name.replace(/\s/g, "-").toLowerCase()}-${Date.now()}`,
+            id: sessionId,
             type: "npc",
             name: npc.name,
             detail: `${npc.race} ${npc.class} (${npc.role})`,
@@ -773,8 +776,10 @@ export default function SessionPlannerPage() {
                 const map = lightboxItem.type === "map" ? mapsData.find((m) => m.id === lightboxItem.id) : null;
                 const genNpc = lightboxItem.type === "generated-npc" && lightboxItem.index !== undefined ? generatedNPCs[lightboxItem.index] : null;
                 const genMon = lightboxItem.type === "generated-monster" && lightboxItem.index !== undefined ? generatedMonsters[lightboxItem.index] : null;
+                // If a saved NPC isn't found in the library, check if it's a saved generated NPC
+                const savedGenNpc = !npc && lightboxItem.type === "npc" ? savedGeneratedNPCData[lightboxItem.id] : null;
 
-                if (!npc && !mon && !map && !genNpc && !genMon) { setLightboxItem(null); return null; }
+                if (!npc && !mon && !map && !genNpc && !genMon && !savedGenNpc) { setLightboxItem(null); return null; }
 
                 const calcMod = (score: number) => { const mod = Math.floor((score - 10) / 2); return mod >= 0 ? `+${mod}` : String(mod); };
 
@@ -844,6 +849,39 @@ export default function SessionPlannerPage() {
                                             <div><strong>Greeting:</strong> <em>&ldquo;{genNpc.dialogue.greeting}&rdquo;</em></div>
                                             <div><strong>Quest:</strong> <em>&ldquo;{genNpc.dialogue.quest}&rdquo;</em></div>
                                             <div><strong>Farewell:</strong> <em>&ldquo;{genNpc.dialogue.farewell}&rdquo;</em></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* ── Saved Generated NPC Lightbox ── */}
+                            {savedGenNpc && (
+                                <div className={styles.lightboxBody}>
+                                    <h2 className={styles.lightboxTitle}>{savedGenNpc.name}</h2>
+                                    <p className={styles.lightboxSubtitle}>{savedGenNpc.race} · {savedGenNpc.class} · {savedGenNpc.role}</p>
+
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Appearance</h4>
+                                        <p>{savedGenNpc.appearance}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Personality</h4>
+                                        <p>{savedGenNpc.personality.join(", ")}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Motivation</h4>
+                                        <p>{savedGenNpc.motivation}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Secret</h4>
+                                        <p className={styles.npcSecret}>{savedGenNpc.secret}</p>
+                                    </div>
+                                    <div className={styles.lightboxSection}>
+                                        <h4>Dialogue</h4>
+                                        <div className={styles.lightboxDialogue}>
+                                            <div><strong>Greeting:</strong> <em>&ldquo;{savedGenNpc.dialogue.greeting}&rdquo;</em></div>
+                                            <div><strong>Quest:</strong> <em>&ldquo;{savedGenNpc.dialogue.quest}&rdquo;</em></div>
+                                            <div><strong>Farewell:</strong> <em>&ldquo;{savedGenNpc.dialogue.farewell}&rdquo;</em></div>
                                         </div>
                                     </div>
                                 </div>
