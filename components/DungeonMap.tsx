@@ -1,26 +1,40 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import styles from "./DungeonMap.module.css";
 
 /* ──────────────────────── Types ──────────────────────── */
 
-interface Room {
+// Cell types for the grid
+const WALL = 0;
+const FLOOR = 1;
+const CORRIDOR = 2;
+const DOOR = 3;
+const SECRET_DOOR = 4;
+const TRAP = 5;
+const CHEST = 6;
+const MONSTER = 7;
+const PILLAR = 8;
+const WATER = 9;
+const STAIRS_UP = 10;
+const STAIRS_DOWN = 11;
+const ALTAR = 12;
+const TABLE = 13;
+const BOOKSHELF = 14;
+const THRONE = 15;
+const PIT = 16;
+const RUBBLE = 17;
+const BARREL = 18;
+const STATUE = 19;
+
+type CellType = number;
+
+interface GridRoom {
     id: number;
-    x: number;
-    y: number;
-    w: number;
-    h: number;
+    gx: number; gy: number; gw: number; gh: number; // grid coords
     type: "entrance" | "combat" | "treasure" | "trap" | "boss" | "empty" | "puzzle";
     label: string;
     encounter?: EncounterInfo;
-}
-
-interface Corridor {
-    x1: number;
-    y1: number;
-    x2: number;
-    y2: number;
 }
 
 export interface EncounterInfo {
@@ -94,21 +108,19 @@ const encounterDb: Record<string, EncounterInfo[]> = {
     ],
 };
 
-/* ──────────── Room type assignment based on features ──────────── */
+/* ──────────── Room labels ──────────── */
 
-const roomTypes: Array<Room["type"]> = ["entrance", "combat", "treasure", "trap", "boss", "empty", "puzzle"];
-
-const roomLabels: Record<Room["type"], string[]> = {
+const roomLabels: Record<GridRoom["type"], string[]> = {
     entrance: ["Entrance Hall", "Gateway", "Vestibule", "Antechamber"],
-    combat: ["Guard Room", "Arena", "Barracks", "War Room", "Patrol Route"],
-    treasure: ["Treasury", "Vault", "Hoard Room", "Cache", "Shrine"],
-    trap: ["Trapped Hall", "Danger Room", "Gauntlet", "Dead End"],
+    combat: ["Guard Room", "Arena", "Barracks", "War Room"],
+    treasure: ["Treasury", "Vault", "Hoard Room", "Shrine"],
+    trap: ["Trapped Hall", "Danger Room", "Gauntlet"],
     boss: ["Boss Chamber", "Throne Room", "Inner Sanctum", "Lair"],
-    empty: ["Storage", "Abandoned Room", "Passage", "Alcove", "Empty Cell"],
-    puzzle: ["Puzzle Room", "Ritual Chamber", "Library", "Observatory"],
+    empty: ["Storage", "Abandoned Room", "Cellar", "Empty Cell"],
+    puzzle: ["Ritual Chamber", "Library", "Observatory"],
 };
 
-const roomColors: Record<Room["type"], string> = {
+const roomColors: Record<GridRoom["type"], string> = {
     entrance: "#4a9eff",
     combat: "#ff4a4a",
     treasure: "#ffd700",
@@ -118,87 +130,126 @@ const roomColors: Record<Room["type"], string> = {
     puzzle: "#2ecc71",
 };
 
-const roomIcons: Record<Room["type"], string> = {
-    entrance: "🚪",
-    combat: "⚔️",
-    treasure: "💰",
-    trap: "⚠️",
-    boss: "💀",
-    empty: "◻️",
-    puzzle: "🧩",
-};
+/* ──────────── Cell rendering config ──────────── */
 
-/* ──────────── Generator ──────────── */
+interface CellStyle {
+    fill: string;
+    label: string;
+    labelColor: string;
+    fontSize?: number;
+}
 
-function generateDungeon(props: DungeonMapProps): { rooms: Room[]; corridors: Corridor[]; width: number; height: number } {
+function getCellStyle(cell: CellType): CellStyle {
+    switch (cell) {
+        case WALL: return { fill: "#1a1d23", label: "", labelColor: "" };
+        case FLOOR: return { fill: "#2a2d35", label: "", labelColor: "" };
+        case CORRIDOR: return { fill: "#252830", label: "", labelColor: "" };
+        case DOOR: return { fill: "#8B4513", label: "D", labelColor: "#fff" };
+        case SECRET_DOOR: return { fill: "#2a2d35", label: "S", labelColor: "#ff8c00", fontSize: 7 };
+        case TRAP: return { fill: "#2a2d35", label: "⚠", labelColor: "#ff8c00", fontSize: 8 };
+        case CHEST: return { fill: "#2a2d35", label: "◆", labelColor: "#ffd700", fontSize: 9 };
+        case MONSTER: return { fill: "#2a2d35", label: "M", labelColor: "#ff4a4a", fontSize: 8 };
+        case PILLAR: return { fill: "#555860", label: "", labelColor: "" };
+        case WATER: return { fill: "#1a3a5c", label: "~", labelColor: "#4a9eff", fontSize: 9 };
+        case STAIRS_UP: return { fill: "#2a2d35", label: "▲", labelColor: "#aaa", fontSize: 8 };
+        case STAIRS_DOWN: return { fill: "#2a2d35", label: "▼", labelColor: "#aaa", fontSize: 8 };
+        case ALTAR: return { fill: "#2a2d35", label: "✦", labelColor: "#9b59b6", fontSize: 9 };
+        case TABLE: return { fill: "#3d3020", label: "", labelColor: "" };
+        case BOOKSHELF: return { fill: "#4a3520", label: "≡", labelColor: "#c4a06a", fontSize: 8 };
+        case THRONE: return { fill: "#3d2050", label: "♔", labelColor: "#ffd700", fontSize: 8 };
+        case PIT: return { fill: "#0d0d0d", label: "X", labelColor: "#555", fontSize: 7 };
+        case RUBBLE: return { fill: "#333639", label: "·", labelColor: "#777", fontSize: 10 };
+        case BARREL: return { fill: "#5a4020", label: "○", labelColor: "#8a7040", fontSize: 7 };
+        case STATUE: return { fill: "#2a2d35", label: "♟", labelColor: "#aaa", fontSize: 8 };
+        default: return { fill: "#2a2d35", label: "", labelColor: "" };
+    }
+}
+
+/* ──────────── Legend items ──────────── */
+const legendItems: { cell: CellType; name: string }[] = [
+    { cell: FLOOR, name: "Floor" },
+    { cell: CORRIDOR, name: "Corridor" },
+    { cell: DOOR, name: "Door" },
+    { cell: SECRET_DOOR, name: "Secret Door" },
+    { cell: TRAP, name: "Trap" },
+    { cell: CHEST, name: "Treasure" },
+    { cell: MONSTER, name: "Monster" },
+    { cell: PILLAR, name: "Pillar" },
+    { cell: WATER, name: "Water" },
+    { cell: STAIRS_DOWN, name: "Stairs" },
+    { cell: ALTAR, name: "Altar" },
+    { cell: TABLE, name: "Table" },
+    { cell: BOOKSHELF, name: "Bookshelf" },
+    { cell: THRONE, name: "Throne" },
+    { cell: PIT, name: "Pit/Hole" },
+    { cell: RUBBLE, name: "Rubble" },
+    { cell: BARREL, name: "Barrel" },
+    { cell: STATUE, name: "Statue" },
+];
+
+/* ──────────── Dungeon Generator ──────────── */
+
+interface DungeonResult {
+    grid: CellType[][];
+    rooms: GridRoom[];
+    gridW: number;
+    gridH: number;
+}
+
+function generateDungeon(props: DungeonMapProps): DungeonResult {
     const rand = seededRandom(props.seed + props.environment);
 
-    // Parse grid size
-    const gridParts = props.gridSize.split("x").map((s) => parseInt(s));
-    const baseW = gridParts[0] || 40;
-    const baseH = gridParts[1] || 40;
+    // Grid dimensions (each cell = 5ft square)
+    const gridW = 48;
+    const gridH = 36;
 
-    // Canvas size
-    const width = 700;
-    const height = 500;
+    // Initialize all walls
+    const grid: CellType[][] = [];
+    for (let y = 0; y < gridH; y++) {
+        grid[y] = [];
+        for (let x = 0; x < gridW; x++) {
+            grid[y][x] = WALL;
+        }
+    }
 
-    // Determine room count based on difficulty
+    // Determine room count
     const difficultyRoomCount: Record<string, number> = {
-        "Easy": 5,
-        "Easy to Medium": 6,
-        "Medium": 7,
-        "Medium to Hard": 8,
-        "Hard": 9,
-        "Hard to Deadly": 10,
-        "Varies": 7,
+        "Easy": 5, "Easy to Medium": 6, "Medium": 7,
+        "Medium to Hard": 8, "Hard": 8, "Hard to Deadly": 9, "Varies": 7,
     };
     const roomCount = difficultyRoomCount[props.difficulty] || 7;
 
-    // Generate rooms with collision avoidance
-    const rooms: Room[] = [];
-    const padding = 20;
-    const minRoomW = 80;
-    const maxRoomW = 140;
-    const minRoomH = 60;
-    const maxRoomH = 100;
+    // Room type assignments
+    const typeOrder: GridRoom["type"][] = ["entrance"];
+    const combatCount = Math.max(2, Math.floor(roomCount * 0.3));
+    for (let i = 0; i < combatCount; i++) typeOrder.push("combat");
+    typeOrder.push("treasure", "trap", "boss");
+    while (typeOrder.length < roomCount) {
+        const extras: GridRoom["type"][] = ["empty", "puzzle", "combat"];
+        typeOrder.push(extras[Math.floor(rand() * extras.length)]);
+    }
 
-    const doesOverlap = (r: { x: number; y: number; w: number; h: number }) => {
-        for (const existing of rooms) {
-            if (
-                r.x < existing.x + existing.w + padding &&
-                r.x + r.w + padding > existing.x &&
-                r.y < existing.y + existing.h + padding &&
-                r.y + r.h + padding > existing.y
-            )
-                return true;
+    const envEncounters = encounterDb[props.environment] || encounterDb.Dungeon;
+    const rooms: GridRoom[] = [];
+
+    // Generate rooms on grid
+    const doesOverlap = (gx: number, gy: number, gw: number, gh: number) => {
+        for (const r of rooms) {
+            if (gx < r.gx + r.gw + 2 && gx + gw + 2 > r.gx &&
+                gy < r.gy + r.gh + 2 && gy + gh + 2 > r.gy) return true;
         }
         return false;
     };
 
-    // Type assignments
-    const typeOrder: Room["type"][] = ["entrance"];
-    // Add combat rooms proportional to room count
-    const combatCount = Math.max(2, Math.floor(roomCount * 0.35));
-    for (let i = 0; i < combatCount; i++) typeOrder.push("combat");
-    typeOrder.push("treasure", "trap", "boss");
-    while (typeOrder.length < roomCount) {
-        const extras: Room["type"][] = ["empty", "puzzle", "combat"];
-        typeOrder.push(extras[Math.floor(rand() * extras.length)]);
-    }
-
-    // Pick encounters for combat and boss rooms
-    const envEncounters = encounterDb[props.environment] || encounterDb.Dungeon;
-
     for (let i = 0; i < roomCount; i++) {
-        let attempts = 0;
-        while (attempts < 100) {
-            const rw = minRoomW + Math.floor(rand() * (maxRoomW - minRoomW));
-            const rh = minRoomH + Math.floor(rand() * (maxRoomH - minRoomH));
-            const rx = 20 + Math.floor(rand() * (width - rw - 40));
-            const ry = 20 + Math.floor(rand() * (height - rh - 40));
+        let placed = false;
+        for (let attempt = 0; attempt < 200; attempt++) {
+            const gw = 5 + Math.floor(rand() * 6); // 5-10 squares wide
+            const gh = 4 + Math.floor(rand() * 5); // 4-8 squares tall
+            const gx = 1 + Math.floor(rand() * (gridW - gw - 2));
+            const gy = 1 + Math.floor(rand() * (gridH - gh - 2));
 
-            const candidate = { x: rx, y: ry, w: rw, h: rh };
-            if (!doesOverlap(candidate)) {
+            if (!doesOverlap(gx, gy, gw, gh)) {
                 const type = typeOrder[i] || "empty";
                 const labels = roomLabels[type];
                 const encounter = (type === "combat" || type === "boss")
@@ -206,21 +257,29 @@ function generateDungeon(props: DungeonMapProps): { rooms: Room[]; corridors: Co
                     : undefined;
 
                 rooms.push({
-                    id: i,
-                    ...candidate,
-                    type,
+                    id: i, gx, gy, gw, gh, type,
                     label: labels[Math.floor(rand() * labels.length)],
                     encounter,
                 });
+                placed = true;
                 break;
             }
-            attempts++;
+        }
+        if (!placed && rooms.length > 0) break; // Stop if can't fit more rooms
+    }
+
+    // Carve room floors
+    for (const room of rooms) {
+        for (let y = room.gy; y < room.gy + room.gh; y++) {
+            for (let x = room.gx; x < room.gx + room.gw; x++) {
+                grid[y][x] = FLOOR;
+            }
         }
     }
 
-    // Generate corridors between rooms (MST-style + some extras)
-    const corridors: Corridor[] = [];
+    // Carve L-shaped corridors between rooms (MST)
     const connected = new Set<number>([0]);
+    const corridorLinks: [number, number][] = [];
 
     while (connected.size < rooms.length) {
         let bestDist = Infinity;
@@ -229,9 +288,11 @@ function generateDungeon(props: DungeonMapProps): { rooms: Room[]; corridors: Co
         for (const fromIdx of connected) {
             for (let toIdx = 0; toIdx < rooms.length; toIdx++) {
                 if (connected.has(toIdx)) continue;
-                const dx = (rooms[fromIdx].x + rooms[fromIdx].w / 2) - (rooms[toIdx].x + rooms[toIdx].w / 2);
-                const dy = (rooms[fromIdx].y + rooms[fromIdx].h / 2) - (rooms[toIdx].y + rooms[toIdx].h / 2);
-                const dist = dx * dx + dy * dy;
+                const cx1 = rooms[fromIdx].gx + Math.floor(rooms[fromIdx].gw / 2);
+                const cy1 = rooms[fromIdx].gy + Math.floor(rooms[fromIdx].gh / 2);
+                const cx2 = rooms[toIdx].gx + Math.floor(rooms[toIdx].gw / 2);
+                const cy2 = rooms[toIdx].gy + Math.floor(rooms[toIdx].gh / 2);
+                const dist = Math.abs(cx1 - cx2) + Math.abs(cy1 - cy2);
                 if (dist < bestDist) {
                     bestDist = dist;
                     bestFrom = fromIdx;
@@ -240,152 +301,380 @@ function generateDungeon(props: DungeonMapProps): { rooms: Room[]; corridors: Co
             }
         }
         connected.add(bestTo);
-        corridors.push({
-            x1: rooms[bestFrom].x + rooms[bestFrom].w / 2,
-            y1: rooms[bestFrom].y + rooms[bestFrom].h / 2,
-            x2: rooms[bestTo].x + rooms[bestTo].w / 2,
-            y2: rooms[bestTo].y + rooms[bestTo].h / 2,
-        });
+        corridorLinks.push([bestFrom, bestTo]);
     }
 
-    // Add 1-2 extra corridors for loops
-    const extraCorridors = 1 + Math.floor(rand() * 2);
-    for (let i = 0; i < extraCorridors && rooms.length > 3; i++) {
+    // Extra corridor for loops
+    if (rooms.length > 3) {
         const a = Math.floor(rand() * rooms.length);
         let b = Math.floor(rand() * rooms.length);
-        if (a !== b) {
-            corridors.push({
-                x1: rooms[a].x + rooms[a].w / 2,
-                y1: rooms[a].y + rooms[a].h / 2,
-                x2: rooms[b].x + rooms[b].w / 2,
-                y2: rooms[b].y + rooms[b].h / 2,
-            });
+        while (b === a && rooms.length > 1) b = Math.floor(rand() * rooms.length);
+        corridorLinks.push([a, b]);
+    }
+
+    // Carve corridors as 2-wide paths
+    for (const [fi, ti] of corridorLinks) {
+        const from = rooms[fi];
+        const to = rooms[ti];
+        let cx = from.gx + Math.floor(from.gw / 2);
+        let cy = from.gy + Math.floor(from.gh / 2);
+        const tx = to.gx + Math.floor(to.gw / 2);
+        const ty = to.gy + Math.floor(to.gh / 2);
+
+        // Carve horizontal then vertical
+        while (cx !== tx) {
+            if (cy >= 0 && cy < gridH && cx >= 0 && cx < gridW) {
+                if (grid[cy][cx] === WALL) grid[cy][cx] = CORRIDOR;
+                if (cy + 1 < gridH && grid[cy + 1][cx] === WALL) grid[cy + 1][cx] = CORRIDOR;
+            }
+            cx += cx < tx ? 1 : -1;
+        }
+        while (cy !== ty) {
+            if (cy >= 0 && cy < gridH && cx >= 0 && cx < gridW) {
+                if (grid[cy][cx] === WALL) grid[cy][cx] = CORRIDOR;
+                if (cx + 1 < gridW && grid[cy][cx + 1] === WALL) grid[cy][cx + 1] = CORRIDOR;
+            }
+            cy += cy < ty ? 1 : -1;
         }
     }
 
-    return { rooms, corridors, width, height };
+    // Place doors where corridors meet rooms
+    for (const room of rooms) {
+        // Check perimeter cells
+        for (let x = room.gx; x < room.gx + room.gw; x++) {
+            // Top edge
+            if (room.gy > 0 && grid[room.gy - 1][x] === CORRIDOR) {
+                grid[room.gy][x] = DOOR;
+            }
+            // Bottom edge
+            if (room.gy + room.gh < gridH && grid[room.gy + room.gh][x] === CORRIDOR) {
+                grid[room.gy + room.gh - 1][x] = DOOR;
+            }
+        }
+        for (let y = room.gy; y < room.gy + room.gh; y++) {
+            // Left edge
+            if (room.gx > 0 && grid[y][room.gx - 1] === CORRIDOR) {
+                grid[y][room.gx] = DOOR;
+            }
+            // Right edge
+            if (room.gx + room.gw < gridW && grid[y][room.gx + room.gw] === CORRIDOR) {
+                grid[y][room.gx + room.gw - 1] = DOOR;
+            }
+        }
+    }
+
+    // ──── Place room interior features ────
+    const placeInRoom = (room: GridRoom, cell: CellType, count: number) => {
+        let placed = 0;
+        for (let attempt = 0; attempt < count * 20 && placed < count; attempt++) {
+            const px = room.gx + 1 + Math.floor(rand() * Math.max(1, room.gw - 2));
+            const py = room.gy + 1 + Math.floor(rand() * Math.max(1, room.gh - 2));
+            if (py < gridH && px < gridW && grid[py][px] === FLOOR) {
+                grid[py][px] = cell;
+                placed++;
+            }
+        }
+    };
+
+    for (const room of rooms) {
+        const area = room.gw * room.gh;
+
+        switch (room.type) {
+            case "entrance":
+                // Stairs leading in, maybe a statue
+                grid[room.gy + Math.floor(room.gh / 2)][room.gx + Math.floor(room.gw / 2)] = STAIRS_DOWN;
+                if (area > 20) placeInRoom(room, STATUE, 1 + Math.floor(rand() * 2));
+                if (rand() > 0.5) placeInRoom(room, PILLAR, 2);
+                break;
+
+            case "combat":
+                // Monsters, pillars for cover, maybe some barrels
+                placeInRoom(room, MONSTER, 2 + Math.floor(rand() * 3));
+                placeInRoom(room, PILLAR, Math.floor(rand() * 3));
+                if (rand() > 0.5) placeInRoom(room, BARREL, 1 + Math.floor(rand() * 2));
+                if (rand() > 0.7) placeInRoom(room, RUBBLE, 1);
+                break;
+
+            case "treasure":
+                // Chests, maybe an altar, pillar
+                placeInRoom(room, CHEST, 2 + Math.floor(rand() * 2));
+                if (rand() > 0.4) placeInRoom(room, ALTAR, 1);
+                placeInRoom(room, PILLAR, Math.floor(rand() * 2));
+                if (rand() > 0.5) placeInRoom(room, STATUE, 1);
+                break;
+
+            case "trap":
+                // Traps, pits, rubble, a secret door
+                placeInRoom(room, TRAP, 3 + Math.floor(rand() * 3));
+                placeInRoom(room, PIT, 1 + Math.floor(rand() * 2));
+                placeInRoom(room, RUBBLE, Math.floor(rand() * 2));
+                // Place a secret door on one wall
+                {
+                    const side = Math.floor(rand() * 4);
+                    let sx: number, sy: number;
+                    if (side === 0) { sx = room.gx + Math.floor(room.gw / 2); sy = room.gy; }
+                    else if (side === 1) { sx = room.gx + Math.floor(room.gw / 2); sy = room.gy + room.gh - 1; }
+                    else if (side === 2) { sx = room.gx; sy = room.gy + Math.floor(room.gh / 2); }
+                    else { sx = room.gx + room.gw - 1; sy = room.gy + Math.floor(room.gh / 2); }
+                    if (sy < gridH && sx < gridW && (grid[sy][sx] === FLOOR || grid[sy][sx] === WALL)) {
+                        grid[sy][sx] = SECRET_DOOR;
+                    }
+                }
+                break;
+
+            case "boss":
+                // Throne, monsters, pillars, altar
+                grid[room.gy + Math.floor(room.gh / 2)][room.gx + Math.floor(room.gw / 2)] = THRONE;
+                placeInRoom(room, MONSTER, 2 + Math.floor(rand() * 2));
+                placeInRoom(room, PILLAR, 2 + Math.floor(rand() * 2));
+                if (rand() > 0.5) placeInRoom(room, CHEST, 1);
+                if (rand() > 0.5) placeInRoom(room, STATUE, 2);
+                // Secret escape
+                {
+                    const sx = room.gx + room.gw - 1;
+                    const sy = room.gy + room.gh - 1;
+                    if (sy < gridH && sx < gridW) grid[sy][sx] = SECRET_DOOR;
+                }
+                break;
+
+            case "empty":
+                // Barrels, rubble, maybe water
+                placeInRoom(room, BARREL, Math.floor(rand() * 3));
+                placeInRoom(room, RUBBLE, Math.floor(rand() * 2));
+                if (rand() > 0.6) placeInRoom(room, WATER, 2 + Math.floor(rand() * 3));
+                break;
+
+            case "puzzle":
+                // Bookshelves, altar, statues, maybe water
+                placeInRoom(room, BOOKSHELF, 2 + Math.floor(rand() * 3));
+                placeInRoom(room, ALTAR, 1);
+                placeInRoom(room, STATUE, Math.floor(rand() * 2));
+                if (rand() > 0.5) placeInRoom(room, PILLAR, 2);
+                // Secret door for puzzle reward
+                {
+                    const sx = room.gx;
+                    const sy = room.gy + Math.floor(room.gh / 2);
+                    if (sy < gridH && sx < gridW) grid[sy][sx] = SECRET_DOOR;
+                }
+                break;
+        }
+    }
+
+    return { grid, rooms, gridW, gridH };
 }
+
+/* ──────────── Cell size ──────────── */
+const CELL = 16; // px per grid square
 
 /* ──────────── Component ──────────── */
 
 export default function DungeonMap(props: DungeonMapProps) {
-    const { rooms, corridors, width, height } = useMemo(() => generateDungeon(props), [props.seed, props.environment, props.difficulty, props.gridSize]);
+    const dungeon = useMemo(
+        () => generateDungeon(props),
+        [props.seed, props.environment, props.difficulty, props.gridSize]
+    );
+    const { grid, rooms, gridW, gridH } = dungeon;
+    const [hoveredRoom, setHoveredRoom] = useState<number | null>(null);
+
+    const svgW = gridW * CELL;
+    const svgH = gridH * CELL;
+
+    // Build a lookup: cell → roomId
+    const cellRoomMap = useMemo(() => {
+        const map: (number | null)[][] = [];
+        for (let y = 0; y < gridH; y++) {
+            map[y] = [];
+            for (let x = 0; x < gridW; x++) {
+                map[y][x] = null;
+            }
+        }
+        for (const room of rooms) {
+            for (let y = room.gy; y < room.gy + room.gh; y++) {
+                for (let x = room.gx; x < room.gx + room.gw; x++) {
+                    if (y < gridH && x < gridW) map[y][x] = room.id;
+                }
+            }
+        }
+        return map;
+    }, [rooms, gridH, gridW]);
 
     return (
         <div className={styles.dungeonWrapper}>
-            {/* Legend */}
+            {/* Grid Legend */}
             <div className={styles.legend}>
-                {roomTypes.map((type) => (
-                    <span key={type} className={styles.legendItem}>
-                        <span className={styles.legendDot} style={{ background: roomColors[type] }} />
-                        {roomIcons[type]} {type.charAt(0).toUpperCase() + type.slice(1)}
-                    </span>
-                ))}
+                <span className={styles.legendTitle}>Map Key (1 square = 5 ft):</span>
+                <div className={styles.legendGrid}>
+                    {legendItems.map((item) => {
+                        const cs = getCellStyle(item.cell);
+                        return (
+                            <span key={item.cell} className={styles.legendItem}>
+                                <span className={styles.legendCell} style={{ background: cs.fill, color: cs.labelColor }}>
+                                    {cs.label}
+                                </span>
+                                {item.name}
+                            </span>
+                        );
+                    })}
+                </div>
             </div>
 
-            {/* SVG Map */}
+            {/* Battle Mat SVG */}
             <div className={styles.mapContainer}>
-                <svg viewBox={`0 0 ${width} ${height}`} className={styles.svg}>
+                <svg viewBox={`0 0 ${svgW} ${svgH}`} className={styles.svg}>
                     <defs>
-                        <filter id="roomGlow">
-                            <feGaussianBlur stdDeviation="3" result="blur" />
+                        <filter id="cellGlow">
+                            <feGaussianBlur stdDeviation="1" result="blur" />
                             <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
-                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
-                        </pattern>
                     </defs>
 
-                    {/* Background grid */}
-                    <rect width={width} height={height} fill="url(#grid)" />
+                    {/* Render grid cells */}
+                    {grid.map((row, y) =>
+                        row.map((cell, x) => {
+                            const cs = getCellStyle(cell);
+                            const isRoomCell = cellRoomMap[y][x] !== null;
+                            const roomId = cellRoomMap[y][x];
+                            const isHovered = roomId !== null && roomId === hoveredRoom;
+                            const room = isHovered ? rooms.find(r => r.id === roomId) : null;
 
-                    {/* Corridors */}
-                    {corridors.map((c, i) => {
-                        // L-shaped corridors
-                        const midX = c.x2;
-                        const midY = c.y1;
+                            return (
+                                <g key={`${x}-${y}`}>
+                                    <rect
+                                        x={x * CELL}
+                                        y={y * CELL}
+                                        width={CELL}
+                                        height={CELL}
+                                        fill={isHovered && cell !== WALL ? `${roomColors[room!.type]}30` : cs.fill}
+                                        stroke={cell === WALL
+                                            ? "rgba(255,255,255,0.02)"
+                                            : isRoomCell
+                                                ? "rgba(255,255,255,0.08)"
+                                                : "rgba(255,255,255,0.05)"}
+                                        strokeWidth={0.5}
+                                        onMouseEnter={() => roomId !== null && setHoveredRoom(roomId)}
+                                        onMouseLeave={() => setHoveredRoom(null)}
+                                    />
+                                    {/* Secret door dashed border */}
+                                    {cell === SECRET_DOOR && (
+                                        <rect
+                                            x={x * CELL + 1}
+                                            y={y * CELL + 1}
+                                            width={CELL - 2}
+                                            height={CELL - 2}
+                                            fill="none"
+                                            stroke="#ff8c00"
+                                            strokeWidth={1}
+                                            strokeDasharray="2 2"
+                                        />
+                                    )}
+                                    {/* Cell symbol */}
+                                    {cs.label && (
+                                        <text
+                                            x={x * CELL + CELL / 2}
+                                            y={y * CELL + CELL / 2 + (cs.fontSize ? cs.fontSize * 0.35 : 3)}
+                                            textAnchor="middle"
+                                            fill={cs.labelColor}
+                                            fontSize={cs.fontSize || 8}
+                                            fontWeight="bold"
+                                            style={{ pointerEvents: "none" }}
+                                        >
+                                            {cs.label}
+                                        </text>
+                                    )}
+                                </g>
+                            );
+                        })
+                    )}
+
+                    {/* Room labels */}
+                    {rooms.map((room) => {
+                        const cx = (room.gx + room.gw / 2) * CELL;
+                        const cy = room.gy * CELL - 3;
                         return (
-                            <g key={`c-${i}`}>
-                                <polyline
-                                    points={`${c.x1},${c.y1} ${midX},${midY} ${c.x2},${c.y2}`}
-                                    fill="none"
-                                    stroke="rgba(100,120,140,0.3)"
-                                    strokeWidth="12"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                            <g key={`label-${room.id}`}>
+                                {/* Room number badge */}
+                                <circle
+                                    cx={room.gx * CELL + 8}
+                                    cy={room.gy * CELL - 6}
+                                    r={7}
+                                    fill={roomColors[room.type]}
                                 />
-                                <polyline
-                                    points={`${c.x1},${c.y1} ${midX},${midY} ${c.x2},${c.y2}`}
+                                <text
+                                    x={room.gx * CELL + 8}
+                                    y={room.gy * CELL - 3}
+                                    textAnchor="middle"
+                                    fill="#fff"
+                                    fontSize="8"
+                                    fontWeight="bold"
+                                >
+                                    {room.id + 1}
+                                </text>
+                                {/* Room name */}
+                                <text
+                                    x={room.gx * CELL + 20}
+                                    y={room.gy * CELL - 3}
+                                    fill={roomColors[room.type]}
+                                    fontSize="7"
+                                    fontWeight="600"
+                                >
+                                    {room.label}
+                                </text>
+                                {/* Room border highlight */}
+                                <rect
+                                    x={room.gx * CELL}
+                                    y={room.gy * CELL}
+                                    width={room.gw * CELL}
+                                    height={room.gh * CELL}
                                     fill="none"
-                                    stroke="rgba(140,160,180,0.15)"
-                                    strokeWidth="8"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
+                                    stroke={roomColors[room.type]}
+                                    strokeWidth={hoveredRoom === room.id ? 2 : 1}
+                                    strokeOpacity={hoveredRoom === room.id ? 0.8 : 0.3}
+                                    rx={1}
                                 />
                             </g>
                         );
                     })}
 
-                    {/* Rooms */}
-                    {rooms.map((room) => (
-                        <g key={room.id} filter="url(#roomGlow)">
-                            {/* Room body */}
-                            <rect
-                                x={room.x}
-                                y={room.y}
-                                width={room.w}
-                                height={room.h}
-                                rx={6}
-                                fill={`${roomColors[room.type]}15`}
-                                stroke={roomColors[room.type]}
-                                strokeWidth={room.type === "boss" ? 2.5 : 1.5}
-                                strokeDasharray={room.type === "trap" ? "6 3" : undefined}
-                            />
-                            {/* Room number circle */}
-                            <circle
-                                cx={room.x + 16}
-                                cy={room.y + 16}
-                                r={10}
-                                fill={roomColors[room.type]}
-                                opacity={0.9}
-                            />
-                            <text
-                                x={room.x + 16}
-                                y={room.y + 20}
-                                textAnchor="middle"
-                                fill="#fff"
-                                fontSize="10"
-                                fontWeight="bold"
-                            >
-                                {room.id + 1}
-                            </text>
-                            {/* Room label */}
-                            <text
-                                x={room.x + room.w / 2}
-                                y={room.y + room.h / 2 - 4}
-                                textAnchor="middle"
-                                fill={roomColors[room.type]}
-                                fontSize="11"
-                                fontWeight="600"
-                                opacity={0.9}
-                            >
-                                {roomIcons[room.type]} {room.label}
-                            </text>
-                            {/* Encounter name if any */}
-                            {room.encounter && (
-                                <text
-                                    x={room.x + room.w / 2}
-                                    y={room.y + room.h / 2 + 14}
-                                    textAnchor="middle"
-                                    fill="rgba(255,255,255,0.6)"
-                                    fontSize="9"
-                                >
-                                    {room.encounter.creatures}
-                                </text>
-                            )}
-                        </g>
-                    ))}
+                    {/* Grid scale indicator */}
+                    <g>
+                        <line x1={CELL} y1={svgH - 8} x2={CELL * 6} y2={svgH - 8} stroke="#aaa" strokeWidth={1} />
+                        <line x1={CELL} y1={svgH - 12} x2={CELL} y2={svgH - 4} stroke="#aaa" strokeWidth={1} />
+                        <line x1={CELL * 6} y1={svgH - 12} x2={CELL * 6} y2={svgH - 4} stroke="#aaa" strokeWidth={1} />
+                        <text x={CELL * 3.5} y={svgH - 2} textAnchor="middle" fill="#aaa" fontSize="7">25 ft (5 squares)</text>
+                    </g>
                 </svg>
+            </div>
+
+            {/* Room Detail Cards */}
+            <div className={styles.roomIndex}>
+                <h4 className={styles.roomIndexTitle}>📋 Room Index</h4>
+                <div className={styles.roomCards}>
+                    {rooms.map((room) => (
+                        <div
+                            key={room.id}
+                            className={`${styles.roomCard} ${hoveredRoom === room.id ? styles.roomCardHovered : ""}`}
+                            onMouseEnter={() => setHoveredRoom(room.id)}
+                            onMouseLeave={() => setHoveredRoom(null)}
+                            style={{ borderLeftColor: roomColors[room.type] }}
+                        >
+                            <div className={styles.roomCardHeader}>
+                                <span className={styles.roomBadge} style={{ background: roomColors[room.type] }}>{room.id + 1}</span>
+                                <strong>{room.label}</strong>
+                                <span className={styles.roomType}>{room.type}</span>
+                            </div>
+                            <div className={styles.roomCardIcons}>
+                                {/* Show what's in this room */}
+                                {room.type === "entrance" && <span title="Stairs">▼ Stairs</span>}
+                                {room.type === "trap" && <span title="Traps">⚠ Traps · Pits · Secret Door</span>}
+                                {room.type === "treasure" && <span title="Treasure">◆ Chests · Altar</span>}
+                                {room.type === "boss" && <span title="Boss">♔ Throne · Monsters · Secret Exit</span>}
+                                {room.type === "combat" && <span title="Combat">⚔ Monsters · Cover</span>}
+                                {room.type === "puzzle" && <span title="Puzzle">≡ Bookshelves · Altar · Secret Door</span>}
+                                {room.type === "empty" && <span title="Empty">○ Barrels · Rubble</span>}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* Encounter Stat Blocks */}
