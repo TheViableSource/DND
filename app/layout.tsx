@@ -18,13 +18,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "DM's Tome | D&D Campaign Manager",
   description:
-    "Everything a new Dungeon Master needs to run an engaging D&D campaign. Session planning, NPC scripts, monster stat blocks, map suggestions, and story arc templates.",
+    "A free toolkit for tabletop RPG game masters. Session planning, NPC generators, monster stat blocks, map suggestions, and story arc templates, compatible with the world's greatest roleplaying game.",
   keywords: [
     "D&D",
-    "Dungeons and Dragons",
+    "tabletop RPG",
     "DM tools",
     "campaign manager",
-    "dungeon master",
+    "game master",
     "NPC generator",
     "encounter builder",
   ],
@@ -40,6 +40,10 @@ export default function RootLayout({
       <body className={`${cinzel.variable} ${inter.variable}`}>
         <Navbar />
         <main>{children}</main>
+        <footer style={{ textAlign: "center", padding: "1.5rem 1rem 2rem", fontSize: "0.72rem", color: "rgba(255,255,255,0.35)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          DM&apos;s Tome is unofficial fan content. Not affiliated with, endorsed, or sponsored by Wizards of the Coast.
+          Dungeons &amp; Dragons and D&amp;D are trademarks of Wizards of the Coast LLC.
+        </footer>
       </body>
     </html>
   );

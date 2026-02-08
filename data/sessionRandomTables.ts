@@ -12,7 +12,7 @@ function pick<T>(arr: T[]): T {
 
 /* ─── Building Blocks for Procedural Generation ─── */
 
-const villains = ["a necromancer", "a vampire lord", "a corrupt noble", "a bandit king", "a demon cultist", "a rogue wizard", "a dark elf assassin", "a tyrannical warlord", "an ancient lich", "a hag coven", "a mind flayer", "a yuan-ti priestess", "a death knight", "an aboleth"];
+const villains = ["a necromancer", "a vampire lord", "a corrupt noble", "a bandit king", "a demon cultist", "a rogue wizard", "a dark elf assassin", "a tyrannical warlord", "an ancient lich", "a hag coven", "a psionic devourer", "a serpentfolk priestess", "a death knight", "an aboleth"];
 const mcguffins = ["a legendary sword", "a dragon egg", "a cursed amulet", "an ancient scroll", "a lost crown", "a divine relic", "a corrupted gemstone", "a forbidden tome", "a sealed phylactery", "a celestial compass", "a planar key", "an enchanted mirror", "a soulstone", "a dwarven war hammer"];
 const locations_pool = ["the abandoned mines", "a haunted forest", "the capital city", "the mountain pass", "an ancient temple", "the coastal cliffs", "a frozen wasteland", "the underdark tunnels", "a floating island", "the desert ruins", "a volcanic island", "the feywild crossing", "a sunken city", "the shadowfell border"];
 const creatures = ["goblins", "wolves", "undead", "bandits", "trolls", "orcs", "giant spiders", "wraiths", "elementals", "wyverns", "gnolls", "kobolds", "harpies", "merfolk", "ettercaps", "gargoyles"];
@@ -305,7 +305,7 @@ const curatedEncounters = [
     "A Basilisk encountered in a cavern littered with stone statues of past victims",
     "An Invisible Stalker sent to assassinate a specific party member",
     "A Nothic lurking in the shadows, offering secrets in exchange for feeding on fear",
-    "3 Displacer Beasts hunting in a misty valley — displacement makes them hard to hit",
+    "3 Phase Panthers hunting in a misty valley — their illusory displacement makes them hard to hit",
     "A trapped Water Weird in a fountain that attacks anyone who approaches",
     "5 Gnolls with a Gnoll Fang of Yeenoghu performing a ritual in a clearing",
     "A Revenant stalking a specific NPC — it won't stop until its target is dead",

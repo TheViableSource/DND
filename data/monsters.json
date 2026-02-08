@@ -875,7 +875,7 @@
     },
     {
         "id": "mon-018",
-        "name": "Beholder",
+        "name": "Ocular Tyrant",
         "type": "Aberration",
         "size": "Large",
         "alignment": "Lawful Evil",
@@ -904,8 +904,8 @@
         "conditionImmunities": "Prone",
         "traits": [
             {
-                "name": "Antimagic Cone",
-                "desc": "The beholder's central eye creates an area of antimagic, as in the antimagic field spell, in a 150-foot cone. The beholder decides which way the cone faces at the start of each of its turns."
+                "name": "Nullifying Gaze",
+                "desc": "The ocular tyrant's central eye creates an area of antimagic in a 150-foot cone. It decides which way the cone faces at the start of each of its turns. Spells and magical effects are suppressed within the cone."
             }
         ],
         "actions": [
@@ -914,22 +914,22 @@
                 "desc": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 14 (4d6) piercing damage."
             },
             {
-                "name": "Eye Rays",
-                "desc": "The beholder shoots three eye rays at random (reroll duplicates), choosing 1-3 targets within 120 ft. 1-Charm Ray (Wis DC 16), 2-Paralyzing Ray (Con DC 16), 3-Fear Ray (Wis DC 16), 4-Slowing Ray (Dex DC 16), 5-Enervation Ray (Con DC 16, 36 necrotic), 6-Telekinetic Ray (Str DC 16), 7-Sleep Ray (Wis DC 16), 8-Petrification Ray (Dex DC 16), 9-Disintegration Ray (Dex DC 16, 45 force), 10-Death Ray (Dex DC 16, 55 necrotic or half)."
+                "name": "Ocular Rays",
+                "desc": "The ocular tyrant fires three rays at random from its many eyes, choosing 1-3 targets within 120 ft. Each ray has a different devastating effect: charm, paralysis, fear, slowing, enervation, telekinesis, sleep, petrification, disintegration, or death. Targets must make a DC 16 saving throw (type varies by ray) or suffer the effect."
             }
         ],
         "legendaryActions": [
             {
-                "name": "Eye Ray",
-                "desc": "The beholder uses one random eye ray."
+                "name": "Ocular Ray",
+                "desc": "The ocular tyrant uses one random ray from its eye stalks."
             }
         ],
-        "tactics": "The beholder is paranoid and strategic. It aims its Antimagic Cone at spellcasters to shut down their magic, then uses Eye Rays on martial threats. It hovers in hard-to-reach positions and uses the environment (vertical shafts, over pits) to its advantage.",
-        "dmTips": "Beholders are THE iconic D&D monster. They're paranoid geniuses — their lair should be full of traps and surveillance. Roll the eye rays randomly for genuine tension. The antimagic cone creates a unique tactical puzzle for the party."
+        "tactics": "The ocular tyrant is paranoid and strategic. It aims its Nullifying Gaze at spellcasters to shut down their magic, then uses Ocular Rays on martial threats. It hovers in hard-to-reach positions and uses the environment (vertical shafts, over pits) to its advantage.",
+        "dmTips": "This floating aberration is paranoid genius material. Its lair should be full of traps and surveillance. Roll the eye rays randomly for genuine tension. The nullifying gaze creates a unique tactical puzzle for the party."
     },
     {
         "id": "mon-019",
-        "name": "Mind Flayer",
+        "name": "Cerebral Devourer",
         "type": "Aberration",
         "size": "Medium",
         "alignment": "Lawful Evil",
@@ -959,7 +959,7 @@
         "traits": [
             {
                 "name": "Magic Resistance",
-                "desc": "The mind flayer has advantage on saving throws against spells and other magical effects."
+                "desc": "The cerebral devourer has advantage on saving throws against spells and other magical effects."
             },
             {
                 "name": "Innate Spellcasting (Psionics)",
@@ -972,16 +972,16 @@
                 "desc": "Melee Weapon Attack: +7 to hit, reach 5 ft., one creature. Hit: 15 (2d10 + 4) psychic damage. If the target is Medium or smaller, it is grappled (escape DC 15) and must succeed on a DC 15 Intelligence saving throw or be stunned until the grapple ends."
             },
             {
-                "name": "Extract Brain",
-                "desc": "Melee Weapon Attack: +7 to hit, reach 5 ft., one incapacitated humanoid grappled by the mind flayer. Hit: 55 (10d10) piercing damage. If this reduces the target to 0 hit points, the mind flayer kills the target by extracting and devouring its brain."
+                "name": "Consume Intellect",
+                "desc": "Melee Weapon Attack: +7 to hit, reach 5 ft., one incapacitated humanoid grappled by the cerebral devourer. Hit: 55 (10d10) piercing damage. If this reduces the target to 0 hit points, the cerebral devourer kills the target by consuming its mental essence."
             },
             {
-                "name": "Mind Blast (Recharge 5-6)",
-                "desc": "The mind flayer magically emits psychic energy in a 60-foot cone. Each creature in that area must succeed on a DC 15 Intelligence saving throw or take 22 (4d8 + 4) psychic damage and be stunned for 1 minute."
+                "name": "Psychic Blast (Recharge 5-6)",
+                "desc": "The cerebral devourer emits a wave of psychic energy in a 60-foot cone. Each creature in that area must succeed on a DC 15 Intelligence saving throw or take 22 (4d8 + 4) psychic damage and be stunned for 1 minute."
             }
         ],
-        "tactics": "The mind flayer opens with Mind Blast to stun as many targets as possible, then closes to use Tentacles on a stunned victim. If it can grapple a stunned target, it uses Extract Brain on its next turn. It uses thralls (charmed minions) as meat shields.",
-        "dmTips": "Mind flayers are TERRIFYING. The brain extraction mechanic creates real fear. Build them up with hints — disappearances, people acting strangely (thralls), and psychic nightmares. The mind flayer should feel like a horror movie villain."
+        "tactics": "The cerebral devourer opens with Psychic Blast to stun as many targets as possible, then closes to use Tentacles on a stunned victim. If it can grapple a stunned target, it uses Consume Intellect on its next turn. It uses thralls (charmed minions) as shields.",
+        "dmTips": "Cerebral devourers are TERRIFYING. The intellect consumption mechanic creates real fear. Build them up with hints: disappearances, people acting strangely (thralls), and psychic nightmares. This creature should feel like a horror movie villain."
     },
     {
         "id": "mon-020",

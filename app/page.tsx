@@ -115,7 +115,7 @@ export default function Home() {
           </div>
           <h1 className={styles.heroTitle}>Your Adventure Begins Here</h1>
           <p className={styles.heroSubtitle}>
-            DM&apos;s Tome is a free, all-in-one toolkit for Dungeons &amp; Dragons Dungeon Masters.
+            DM&apos;s Tome is a free, all-in-one toolkit for tabletop RPG game masters.
             Whether you&apos;re prepping your first session or building a full campaign, everything you
             need is here: NPC &amp; monster generators, procedural dungeon maps, pre-built story arcs,
             quick rules reference, and a session planner that exports to PDF.
@@ -147,7 +147,7 @@ export default function Home() {
         <section className={styles.aboutSection}>
           <h2 className={styles.sectionTitle}>What is DM&apos;s Tome?</h2>
           <p className={styles.aboutText}>
-            Running a D&amp;D game can feel overwhelming, especially the first few times. DM&apos;s Tome
+            Running a tabletop RPG game can feel overwhelming, especially the first few times. DM&apos;s Tome
             puts every tool you need in one place so you can focus on telling great stories instead of
             drowning in prep work. Browse a library of ready-to-use NPCs and monsters, generate new
             ones on the fly with built-in generators, explore procedurally-created dungeon maps, follow
