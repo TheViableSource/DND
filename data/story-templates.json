@@ -1,0 +1,460 @@
+[
+    {
+        "id": "story-001",
+        "name": "The Lost Relic",
+        "tagline": "A classic treasure hunt through dungeons and danger",
+        "tier": "Beginner",
+        "sessions": "3-5",
+        "partyLevel": "1-4",
+        "overview": "A mysterious artifact has been stolen from the town temple, and dark forces are closing in. The party must track the thief through wilderness, into a dungeon, and confront the true mastermind before the relic is used to unleash an ancient evil.",
+        "themes": [
+            "Exploration",
+            "Mystery",
+            "Classic Dungeon Crawl"
+        ],
+        "sessions_detail": [
+            {
+                "number": 1,
+                "title": "The Call to Adventure",
+                "summary": "The party arrives in the town of Millhaven to find the temple ransacked and the sacred Sunstone stolen. Brother Mathis (NPC) begs them for help.",
+                "scenes": [
+                    "Arrival in Millhaven — describe the town, meet the innkeeper Pip",
+                    "Visit the ransacked temple — investigate the break-in (DC 12 Investigation reveals muddy boot prints heading east, DC 14 reveals arcane residue)",
+                    "Talk to witnesses — the blacksmith saw a hooded figure heading toward the Darkwood",
+                    "Prepare and set out — buy supplies, get a map from the general store"
+                ],
+                "keyNPCs": [
+                    "Brother Mathis",
+                    "Pip Whittlethorn",
+                    "Greta Ironpour"
+                ],
+                "encounters": [
+                    "Optional: 4 Bandits on the road east (warm-up combat)"
+                ],
+                "dmTips": "This session is about setting the stage. Let players explore and ask questions. Drop the quest hook naturally — don't force them into it. If they seem lost, have an NPC point them in the right direction."
+            },
+            {
+                "number": 2,
+                "title": "Into the Darkwood",
+                "summary": "The party tracks the thief through the dangerous Darkwood forest, encountering wildlife and discovering the entrance to an ancient dungeon.",
+                "scenes": [
+                    "Forest tracking — DC 12 Survival to follow the trail, failure means a random encounter",
+                    "Encounter the druid Wren Mosswalker — she warns of corruption spreading from underground",
+                    "Find the dungeon entrance hidden behind a waterfall",
+                    "First dungeon room — the Forgotten Crypt entrance, signs of recent passage"
+                ],
+                "keyNPCs": [
+                    "Wren Mosswalker"
+                ],
+                "encounters": [
+                    "Pack of 4 Wolves (or 2 Giant Spiders)",
+                    "Environmental: Quicksand (DC 13 Perception to spot, DC 14 Str to escape)"
+                ],
+                "dmTips": "Build tension during the forest travel. Describe sounds, shadows, and the feeling of being watched. The druid encounter should feel helpful but unsettling — she knows more than she's saying."
+            },
+            {
+                "number": 3,
+                "title": "The Forgotten Crypt",
+                "summary": "The party delves into the dungeon, navigating traps and undead, to reach the inner chamber where the thief is attempting to use the Sunstone.",
+                "scenes": [
+                    "Dungeon exploration — trapped hallway, skeleton guardians, puzzle door",
+                    "Puzzle: the door has three symbols (sun, moon, star) — pressing them in the wrong order triggers a trap",
+                    "Discovery: the thief is Zara Nightbloom — but she's not the villain, she was hired by someone else",
+                    "The real threat: a Wraith bound to the crypt that's been feeding on the Sunstone's power"
+                ],
+                "keyNPCs": [
+                    "Zara Nightbloom (the thief — potential ally)"
+                ],
+                "encounters": [
+                    "4-6 Skeletons in the main corridor",
+                    "Trap: Poison dart hallway (DC 12 Perception, DC 14 Dex save, 1d6 poison)",
+                    "BOSS: 1 Wraith + 2 Zombies in the inner chamber"
+                ],
+                "dmTips": "The twist — Zara isn't evil, she was hired and lied to. Let the party decide: fight her, talk to her, or recruit her. The wraith fight should feel dangerous. Describe the necrotic energy, the cold, and the wraith phasing through walls."
+            },
+            {
+                "number": 4,
+                "title": "The Mastermind Revealed",
+                "summary": "With the Sunstone recovered and Zara's information, the party confronts Lord Ashengrey — the corrupt noble who orchestrated the theft to gain power.",
+                "scenes": [
+                    "Return to Millhaven — heroes' welcome, Brother Mathis is overjoyed",
+                    "Zara reveals the identity of her employer: Lord Percival Ashengrey",
+                    "Infiltrate or confront Ashengrey at his manor",
+                    "Final confrontation: Ashengrey attempts to flee with his ill-gotten artifacts"
+                ],
+                "keyNPCs": [
+                    "Lord Percival Ashengrey",
+                    "Zara Nightbloom",
+                    "Captain Dorena Steelhand"
+                ],
+                "encounters": [
+                    "4-6 Guards at the manor",
+                    "BOSS: Lord Ashengrey (treat as Mage stat block, CR 6) with 2 Guard bodyguards"
+                ],
+                "dmTips": "This can go multiple ways: stealth infiltration, political accusation, or direct assault. Let the party's approach determine the tone. If they've recruited Zara, she can guide them through the manor. End with resolution and hints of a bigger threat."
+            }
+        ],
+        "plotTwists": [
+            "Zara isn't the villain — she was manipulated",
+            "The Sunstone isn't just a treasure — it's a seal keeping something imprisoned",
+            "Lord Ashengrey answers to an even more powerful entity",
+            "Brother Mathis's fading power is connected to the Sunstone's theft"
+        ],
+        "possibleEndings": [
+            "Justice Served: Ashengrey is arrested, the Sunstone returned, the town celebrates",
+            "The Escape: Ashengrey escapes, creating a recurring villain for future arcs",
+            "Dark Discovery: The party learns the Sunstone was keeping something sealed — and removing it may have awakened it"
+        ]
+    },
+    {
+        "id": "story-002",
+        "name": "Shadows Over Millhaven",
+        "tagline": "A mystery that will test your wits more than your sword",
+        "tier": "Intermediate",
+        "sessions": "4-6",
+        "partyLevel": "3-6",
+        "overview": "People in Millhaven are disappearing. The town guard is baffled, the mayor is hiding something, and a cult called the Whisperers of the Final Dawn is growing in the shadows. The party must investigate, infiltrate, and stop a dark ritual before it's too late.",
+        "themes": [
+            "Mystery",
+            "Investigation",
+            "Horror",
+            "Political Intrigue"
+        ],
+        "sessions_detail": [
+            {
+                "number": 1,
+                "title": "Something Wicked",
+                "summary": "The party is hired by Captain Dorena to investigate disappearances. Three people have vanished without a trace in the past month.",
+                "scenes": [
+                    "Meeting with Captain Dorena — she's frustrated and desperate",
+                    "Investigate the three disappearance sites (homes, workplaces)",
+                    "Clue: each victim had recently visited a new 'bookshop' in town",
+                    "Visit the bookshop — the owner (a charming tiefling) is very helpful... too helpful"
+                ],
+                "keyNPCs": [
+                    "Captain Dorena Steelhand",
+                    "Madame Isolde (at the fortune teller's)",
+                    "Bookshop Owner (secret cultist)"
+                ],
+                "encounters": [
+                    "Investigation only — no combat this session (build tension!)"
+                ],
+                "dmTips": "This is a mystery session. Let players be detectives. Reward creative investigation with clues. The bookshop is a front — DC 16 Investigation finds a hidden basement entrance. Don't be afraid of sessions without combat!"
+            },
+            {
+                "number": 2,
+                "title": "Deeper into Darkness",
+                "summary": "The party discovers evidence of the cult and begins tracking their activities. The cult has agents everywhere — including in the town government.",
+                "scenes": [
+                    "Follow up on the bookshop clue — find cult propaganda and a membership roster",
+                    "Roster includes a town council member (SHOCK!)",
+                    "Consult Madame Isolde — she has a terrifying vision of the ritual",
+                    "Cult agents attack the party to silence them"
+                ],
+                "keyNPCs": [
+                    "Madame Isolde",
+                    "Mayor Aldric Thornwood (is he involved?)"
+                ],
+                "encounters": [
+                    "4 Cult Fanatics ambush the party at night",
+                    "Optional: 2 Shadow creatures sent as assassins"
+                ],
+                "dmTips": "Ramp up the paranoia. NPCs who were friendly might suddenly seem suspicious. The ambush should feel personal — the cult KNOWS the party is investigating. Make the players feel hunted."
+            },
+            {
+                "number": 3,
+                "title": "The Infiltration",
+                "summary": "The party must infiltrate a secret cult meeting to learn the details of the planned ritual and find where the victims are being held.",
+                "scenes": [
+                    "Plan the infiltration — disguises, stealth, or a combination",
+                    "The cult meets in the abandoned mill outside town",
+                    "Witness the ritual preparations — the victims are alive but in a magical trance",
+                    "Overhear the cult leader: the ritual happens during the lunar eclipse (3 days away)"
+                ],
+                "keyNPCs": [
+                    "Sister Seraphina (arrives to help)",
+                    "The cult leader (Vaelith Shadowmere revealed)"
+                ],
+                "encounters": [
+                    "Stealth challenge: 3 successful group DC 14 Stealth checks to remain hidden",
+                    "If discovered: fight 6 Cultists + 1 Cult Fanatic"
+                ],
+                "dmTips": "This should feel tense and cinematic. Use a skill challenge format: accumulate successes vs. failures. On 3 failures, they're spotted and combat ensues. Let creative solutions (disguises, distraction) count as automatic successes."
+            },
+            {
+                "number": 4,
+                "title": "Race Against the Eclipse",
+                "summary": "With the knowledge of when and where the ritual will happen, the party has three days to prepare and allies to gather before the final confrontation.",
+                "scenes": [
+                    "Gather allies — convince Captain Dorena, Sister Seraphina, and others to join",
+                    "Prepare for the assault — gear up, plan tactics, set traps",
+                    "Optional side quest: rescue a captured ally from the cult's secondary hideout",
+                    "The eclipse begins — march on the ritual site"
+                ],
+                "keyNPCs": [
+                    "All accumulated allies"
+                ],
+                "encounters": [
+                    "Optional: raid on cult hideout (6 Cultists, 2 Cult Fanatics)",
+                    "Preparation: no combat, but time pressure creates urgency"
+                ],
+                "dmTips": "This is the calm before the storm. Let players feel empowered by their preparations. The ally-gathering is a series of persuasion checks (DC varies). If they've been helpful to NPCs throughout, those NPCs join willingly."
+            },
+            {
+                "number": 5,
+                "title": "The Final Dawn",
+                "summary": "The party assaults the ritual site during the lunar eclipse, battles the cult, confronts Vaelith Shadowmere, and determines the fate of Millhaven.",
+                "scenes": [
+                    "Approach the ritual site — a stone circle in the Darkwood (use Map: Darkwood Clearing)",
+                    "Battle through cult defenders",
+                    "Confront Vaelith at the center of the ritual",
+                    "Critical choice: Vaelith offers to stop if the party lets them complete 'just the first part'",
+                    "Resolution: stop the ritual, save the victims, confront the truth about what Vaelith wanted"
+                ],
+                "keyNPCs": [
+                    "Vaelith Shadowmere",
+                    "All allies"
+                ],
+                "encounters": [
+                    "Wave 1: 8 Cultists + 2 Cult Fanatics",
+                    "Wave 2: 2 Shadows + 1 Shadow Demon",
+                    "BOSS: Vaelith Shadowmere (Warlock stat block, CR 8)"
+                ],
+                "dmTips": "This should be EPIC. Use the environment — describe the eclipse turning the sky blood-red, the ritual circle glowing, reality distorting. Vaelith's offer is genuine — they truly want to save their loved one. There's no 'right' answer. Let players debate and choose."
+            }
+        ],
+        "plotTwists": [
+            "Mayor Thornwood isn't in the cult — but he's been covering up disappearances to avoid panic",
+            "Vaelith's 'evil ritual' is actually motivated by love and grief",
+            "The cult has a mole in the town guard",
+            "The victims weren't kidnapped — they were voluntarily offering themselves, believing they'd be resurrected in a 'better world'"
+        ],
+        "possibleEndings": [
+            "Total Victory: Cult destroyed, Vaelith stopped, victims saved, town celebrates",
+            "Pyrrhic Victory: Ritual partially completed — one victim is lost to the Shadowfell",
+            "Moral Grey: Vaelith's portal opens briefly — they see their loved one is truly gone and collapse in grief. The party must decide what to do with them",
+            "Dark Sequel: The ritual is stopped, but the attempt weakened the barrier between worlds — shadowy creatures begin appearing in the region"
+        ]
+    },
+    {
+        "id": "story-003",
+        "name": "The Dragon's Ultimatum",
+        "tagline": "A young dragon demands tribute. Your party disagrees.",
+        "tier": "Intermediate to Advanced",
+        "sessions": "5-8",
+        "partyLevel": "4-8",
+        "overview": "A young red dragon named Scorathax has claimed a mountain overlooking the region. It demands monthly tribute of gold and livestock or it will burn everything. The party must unite fractured communities, find the dragon's weakness, and ultimately confront the beast in its lair.",
+        "themes": [
+            "Epic Quest",
+            "Diplomacy",
+            "Dragon Slaying",
+            "Community Building"
+        ],
+        "sessions_detail": [
+            {
+                "number": 1,
+                "title": "The Ultimatum",
+                "summary": "Scorathax flies over the valley, roasting a farm as a 'demonstration,' and delivers its demands.",
+                "scenes": [
+                    "The party witnesses the dragon attack from a distance — describe the terror",
+                    "Rush to help survivors — rescue, healing, and hearing the dragon's demands",
+                    "Town meeting: the mayor wants to pay, the blacksmith wants to fight, the people are divided",
+                    "Decision point: do the party support resistance or negotiate?"
+                ],
+                "keyNPCs": [
+                    "Aldric Thornwood (mayor)",
+                    "Greta Ironpour (wants to fight)",
+                    "Torbin Galeheart (ranger, offers to track the dragon)"
+                ],
+                "encounters": [
+                    "No combat — emotional and political this session"
+                ],
+                "dmTips": "Make the dragon TERRIFYING but distant. Show the devastation through the burned farm, the survivors' stories, and the sheer scale of the threat. The town meeting should feel divided and realistic."
+            },
+            {
+                "number": 2,
+                "title": "Gathering Allies",
+                "summary": "If they're going to fight a dragon, they'll need help. The party travels to nearby communities to build a coalition.",
+                "scenes": [
+                    "Visit the dwarven mining settlement — they'll help if the party clears monsters from their mine",
+                    "Visit the elven enclave — they have a weapon that can hurt dragons but demand a favor first",
+                    "Visit the halfling village — they offer food, shelter, and a worryingly enthusiastic militia",
+                    "Each ally has a price — side quests!"
+                ],
+                "keyNPCs": [
+                    "Greta Ironpour (dwarven connection)",
+                    "Wren Mosswalker (elven connection)",
+                    "Pip Whittlethorn (halfling connection)"
+                ],
+                "encounters": [
+                    "Side quest combat varies by community (see individual quests)"
+                ],
+                "dmTips": "This is a political/social session with optional combat side quests. Each community has a personality. The dwarves are pragmatic, the elves are cautious, the halflings are brave but disorganized. Let the party navigate the politics."
+            },
+            {
+                "number": 3,
+                "title": "The Dragon's Weakness",
+                "summary": "Old Barrow Tam reveals that Scorathax has a weakness: a wound from a previous battle that never healed. But finding proof requires entering the dragon's old hunting grounds.",
+                "scenes": [
+                    "Seek out Old Barrow Tam — he knows dragon lore",
+                    "Tam reveals: Scorathax was wounded by a Dragonslayer weapon now lost in the Cavern of Echoes",
+                    "Journey to the Cavern of Echoes (use Map: Cavern of Echoes)",
+                    "Find the broken Dragonslayer weapon and evidence of Scorathax's injury"
+                ],
+                "keyNPCs": [
+                    "Old Barrow Tam"
+                ],
+                "encounters": [
+                    "Cavern of Echoes encounters: 2 Giant Spiders, environmental hazards",
+                    "Guardian of the weapon: 1 Troll (it regenerates — fire is the answer, which ties into the dragon theme!)"
+                ],
+                "dmTips": "Tam is a fun role-play challenge — he rambles, gives half-answers, and is genuinely trying to help despite being scattered. The Dragonslayer weapon needs repair (Greta can do it!) creating a satisfying crafting moment."
+            },
+            {
+                "number": 5,
+                "title": "The Dragon's Lair",
+                "summary": "The coalition marches on Scorathax's lair. The allied forces hold the entrance while the party goes inside to face the dragon.",
+                "scenes": [
+                    "The march — allies from all communities, a moving moment of unity",
+                    "The lair exterior — kobold defenders, fire traps, and the heat",
+                    "Enter the lair (use Map: Dragon's Lair)",
+                    "FINAL BOSS: Scorathax, Young Red Dragon (or scaled up Adult if party is strong)"
+                ],
+                "keyNPCs": [
+                    "All allies from previous sessions"
+                ],
+                "encounters": [
+                    "8-12 Kobolds at the entrance (allies help)",
+                    "2 Fire-based creatures (mephits or elementals)",
+                    "BOSS: Scorathax (Young Red Dragon, CR 10)"
+                ],
+                "dmTips": "This is THE moment. Build it up. The march should feel cinematic — dwarven war chants, elven archery volleys, halfling slingers. The dragon fight should use the lair fully — magma rivers, collapsing pillars, dragon flight. If the repaired Dragonslayer weapon is used, give it bonus damage against dragons."
+            }
+        ],
+        "plotTwists": [
+            "Scorathax is a young dragon being controlled by a more powerful force",
+            "One of the allied communities has been secretly providing tribute to the dragon",
+            "The Dragonslayer weapon has a will of its own and demands a sacrifice to be restored",
+            "Scorathax has an egg — the dragon is nesting, not conquering. Change the moral equation!"
+        ],
+        "possibleEndings": [
+            "Dragon Slain: Scorathax is defeated. The communities celebrate unity. The hoard is divided.",
+            "Negotiated Peace: The party discovers Scorathax is nesting and negotiates coexistence",
+            "Pyrrhic Victory: The dragon is slain, but its controller (Adult or Ancient dragon) now knows the party exists",
+            "The Hatchling: Scorathax dies but the egg hatches — the party must decide what to do with a baby dragon"
+        ]
+    },
+    {
+        "id": "story-004",
+        "name": "Rise of the Forgotten King",
+        "tagline": "An ancient evil stirs. Can you stop a god from returning?",
+        "tier": "Advanced",
+        "sessions": "8-12",
+        "partyLevel": "5-12",
+        "overview": "An ancient lich-king, entombed centuries ago, is slowly regaining power as his cultists gather the artifacts needed to restore him. The party must race across the land, gathering allies and destroying the artifacts before the Forgotten King rises to remake the world in his image.",
+        "themes": [
+            "Epic Campaign",
+            "World-Spanning Quest",
+            "Good vs. Evil",
+            "Legacy"
+        ],
+        "sessions_detail": [
+            {
+                "number": 1,
+                "title": "Whispers in the Dark",
+                "summary": "Strange events across the land — earthquakes, undead sightings, and prophetic nightmares shared by multiple people — signal the beginning of something terrible.",
+                "scenes": [
+                    "The party experiences the unnatural events firsthand",
+                    "Seek answers from Madame Isolde — her divination reveals a vision of a crowned skeleton",
+                    "The Grey Stranger appears with a warning: 'The King remembers. The seal weakens.'",
+                    "First artifact location revealed: the Sunken Temple beneath the lake"
+                ],
+                "keyNPCs": [
+                    "Madame Isolde",
+                    "The Grey Stranger"
+                ],
+                "encounters": [
+                    "4-6 Skeletons rise from the graveyard as a sign (easy fight, sets the tone)"
+                ],
+                "dmTips": "This session is about building dread. The signs should feel WRONG — dead animals, milk curdling, children having the same nightmare. The Grey Stranger should be mysterious and unsettling. Don't explain too much — let the mystery build."
+            },
+            {
+                "number": 3,
+                "title": "The Sunken Temple",
+                "summary": "Dive beneath the lake to reach the flooded temple where the first artifact — the Crown of Dominion — is kept.",
+                "scenes": [
+                    "Prepare for underwater exploration (potions, spells, or creative solutions)",
+                    "Navigate the sunken ruins (puzzles, traps, water hazards)",
+                    "Encounter the temple guardian: a Water Elemental bound to protect the artifact",
+                    "Retrieve the Crown fragment — but touching it triggers a psychic flashback of the Forgotten King's life"
+                ],
+                "keyNPCs": [
+                    "Myrra Copperkettle (provides Water Breathing potions)"
+                ],
+                "encounters": [
+                    "Water Elemental guardian (CR 5)",
+                    "3 Merrow (aquatic ogres) in the outer ruins",
+                    "Trap: crushing walls (DC 14 Dex save, 4d6 bludgeoning)"
+                ],
+                "dmTips": "Underwater combat has special rules (see Quick Rules). The psychic flashback is a role-play moment — the party SEES the King as he was in life: a benevolent ruler who was corrupted by his fear of death. Humanize the villain."
+            },
+            {
+                "number": 6,
+                "title": "The King's Court",
+                "summary": "The party infiltrates the ruins of the Forgotten King's original castle, where the cult is attempting to reassemble the artifacts.",
+                "scenes": [
+                    "Journey to the Ruined Kingdom — a dead land of perpetual twilight",
+                    "Navigate the castle ruins — traps, undead, and the cult's defenses",
+                    "Discover the King's throne room, now a ritual chamber",
+                    "Battle the cult leader (high priest) and prevent artifact assembly"
+                ],
+                "keyNPCs": [
+                    "Sister Seraphina (joins the assault)",
+                    "Thokk Bonecrusher (provides muscle)"
+                ],
+                "encounters": [
+                    "6 Cultists + 2 Cult Fanatics on guard",
+                    "2 Wraiths in the corridors",
+                    "BOSS: Cult High Priest (Mage stat block) + 4 Skeletons"
+                ],
+                "dmTips": "The Ruined Kingdom should feel ancient and oppressive. Everything is grey, dead, and crumbling. The cult's ritual is partially complete — describe the artifacts pulsing with dark energy. The High Priest is fanatical and believes they're bringing salvation."
+            },
+            {
+                "number": 10,
+                "title": "The Forgotten King Rises",
+                "summary": "Despite the party's efforts, the cult has enough power to partially awaken the King. The final battle takes place in his tomb as he rises from death.",
+                "scenes": [
+                    "The ground shakes. Dark energy erupts from the tomb beneath the castle.",
+                    "Descend into the tomb — a vast underground complex of impossible architecture",
+                    "Face the Forgotten King as he rises from his sarcophagus, only partially restored",
+                    "FINAL BOSS: The Forgotten King (use modified Lich stat block, weakened by missing artifacts)",
+                    "Climax: the party must use the gathered artifacts to seal him away permanently — or destroy them (and risk the seal failing later)"
+                ],
+                "keyNPCs": [
+                    "The Grey Stranger (appears one final time)",
+                    "All allies gathered throughout the campaign"
+                ],
+                "encounters": [
+                    "Undead army rising as the King awakens (allies hold the line)",
+                    "2 Death Knights as the King's generals",
+                    "FINAL BOSS: The Forgotten King (Lich, CR 21 but weakened to CR 15 equivalent if artifacts were destroyed)"
+                ],
+                "dmTips": "EVERYTHING leads to this moment. Pull out all the stops. The undead army, the allies fighting outside, the ground cracking, the King's terrible voice. If the party destroyed enough artifacts, the King is weakened. If they didn't... God help them. The final choice — seal or destroy — should have campaign-altering consequences."
+            }
+        ],
+        "plotTwists": [
+            "The Forgotten King was once a hero-king who sacrificed everything to save his people — his turn to evil was caused by a betrayal",
+            "One of the party's allies is a descendant of the King's bloodline — and the King wants them as a vessel",
+            "The Grey Stranger is an aspect of the same deity that originally sealed the King",
+            "The artifacts aren't just keys — they're fragments of the King's soul. Destroying them causes him immense pain",
+            "The cult genuinely believes the King will create a utopia — they're not evil, just misguided"
+        ],
+        "possibleEndings": [
+            "Sealed Forever: The King is sealed again, and the artifacts scattered. But seals can be broken again...",
+            "True Death: The artifacts are used to permanently destroy the King's phylactery. He's gone forever. The Ruined Kingdom begins to heal.",
+            "Redemption: The party somehow reaches the King's original personality. He chooses to pass on peacefully, undoing his undeath willingly.",
+            "Dark Ending: The King is too powerful. He rises fully. The campaign continues as a war for survival — sequel hook!",
+            "The Successor: The bloodline descendant takes the crown and uses the King's power for good... or do they? Another sequel hook."
+        ]
+    }
+]

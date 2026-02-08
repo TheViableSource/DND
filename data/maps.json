@@ -1,0 +1,355 @@
+[
+    {
+        "id": "map-001",
+        "name": "The Forgotten Crypt",
+        "environment": "Dungeon",
+        "description": "A crumbling underground burial complex with narrow stone corridors, collapsed sections, and an eerie green glow emanating from deeper chambers. Water drips from the ceiling, and the air smells of damp earth and decay.",
+        "gridSize": "30x40",
+        "difficulty": "Easy to Medium",
+        "keyFeatures": [
+            "Central burial chamber with raised sarcophagus",
+            "Trapped hallway with pressure plates",
+            "Hidden room behind a false wall",
+            "Flooded lower level",
+            "Altar room with magical wards"
+        ],
+        "suggestedEncounters": [
+            "4-6 Skeletons guarding the main chamber",
+            "1 Wraith bound to the sarcophagus",
+            "2 Zombies in the flooded section",
+            "Trap: poison dart pressure plates (DC 12 Perception to spot, DC 14 Dex save, 1d6 poison)"
+        ],
+        "tacticalNotes": "Narrow corridors limit movement — great for funnel tactics. The flooded section counts as difficult terrain. The false wall (DC 15 Investigation) hides the real treasure.",
+        "lootSuggestions": [
+            "Potion of Healing",
+            "50-100 gold in ancient coins",
+            "A mysterious amulet (quest hook)",
+            "Scroll of Protection from Evil"
+        ],
+        "readAloudText": "The stone steps descend into darkness. As your torchlight pushes back the shadows, you see a narrow corridor stretching ahead, its walls lined with alcoves containing crumbling bones. The air is thick and cold, and somewhere in the distance, you hear the slow drip... drip... drip of water. Something scrapes against stone deeper in the crypt."
+    },
+    {
+        "id": "map-002",
+        "name": "Cavern of Echoes",
+        "environment": "Dungeon",
+        "description": "A vast natural cavern system with towering stalactites, underground rivers, and bioluminescent fungi that cast an otherworldly blue glow. The acoustics make every sound echo unpredictably.",
+        "gridSize": "50x50",
+        "difficulty": "Medium",
+        "keyFeatures": [
+            "Underground river with a rickety rope bridge",
+            "Elevated crystal formation (sniper position)",
+            "Spider web-covered side passage",
+            "Collapsed tunnel (can be cleared with effort)",
+            "Underground lake with something moving beneath the surface"
+        ],
+        "suggestedEncounters": [
+            "2 Giant Spiders in the web passage",
+            "Pack of 5 Wolves (or Giant Bats) near the entrance",
+            "1 Owlbear that uses the echoes to confuse prey",
+            "Environmental hazard: unstable ceiling (DC 13 Dex save or 2d6 bludgeoning from falling rocks)"
+        ],
+        "tacticalNotes": "The echoes give disadvantage on Perception checks relying on sound. The rope bridge can hold 2 Medium creatures; more causes a DC 12 Dex save or fall 30 ft. The elevated crystals provide three-quarters cover.",
+        "lootSuggestions": [
+            "Glowing crystal worth 25 gold",
+            "Potion of Spider Climb",
+            "Adventurer's remains with a map fragment",
+            "Raw gemstones (worth 50-75 gold)"
+        ],
+        "readAloudText": "The tunnel opens into a breathtaking cavern. Stalactites hang like stone daggers from a ceiling lost in darkness above. A faint blue glow pulses from clusters of mushrooms along the walls, casting everything in an ethereal light. An underground river cuts through the cavern floor, its waters black and swift. Your footsteps echo in every direction, making it impossible to tell what's ahead... or what's behind you."
+    },
+    {
+        "id": "map-003",
+        "name": "The Abandoned Mine",
+        "environment": "Dungeon",
+        "description": "A once-productive silver mine now overrun with creatures. Minecart tracks line the main tunnel, support beams creak ominously, and the deeper you go, the warmer and stranger the air becomes.",
+        "gridSize": "25x60",
+        "difficulty": "Easy to Medium",
+        "keyFeatures": [
+            "Minecart track with a working cart (can ride it!)",
+            "Flooded shaft with a ladder descent",
+            "Foreman's office with records and a safe",
+            "Unstable tunnel section (collapse hazard)",
+            "Deep chamber where something was unearthed"
+        ],
+        "suggestedEncounters": [
+            "6-8 Kobolds with trap gauntlet at the entrance",
+            "1 Bugbear 'boss' in the foreman's office",
+            "Swarm of bats disturbed by noise",
+            "At the deepest point: a creature sealed away (DM's choice — great hook!)"
+        ],
+        "tacticalNotes": "The minecart can be used as mobile cover or launched down tracks into enemies (improvised weapon, 3d6 bludgeoning, DC 15 Dex save). The unstable section collapses if anyone casts a loud spell (DC 14 Dex save, 3d6 bludgeoning, area becomes difficult terrain).",
+        "lootSuggestions": [
+            "Raw silver ore (worth 30 gold total)",
+            "Mining equipment (could be useful)",
+            "Foreman's journal (plot exposition)",
+            "Lockbox in the safe with 75 gold and a key"
+        ],
+        "readAloudText": "Rotting wooden beams frame the mine entrance like the ribs of a dead beast. Inside, rusted minecart tracks disappear into the darkness. The walls glitter faintly — traces of silver still embedded in the rock. But the mine isn't empty. You can hear movement deeper inside: the scrape of claws, the chatter of small voices, and occasionally... the groan of timber under immense strain."
+    },
+    {
+        "id": "map-004",
+        "name": "The Wizard's Tower",
+        "environment": "Dungeon",
+        "description": "A spiraling stone tower with five floors, each dedicated to a different school of magic. The architecture defies physics — staircases shift, rooms are larger inside than out, and residual magic sparks in the air.",
+        "gridSize": "20x20 per floor (5 floors)",
+        "difficulty": "Medium to Hard",
+        "keyFeatures": [
+            "Ground floor: reception hall with animated armor guards",
+            "Second floor: library with a trapped spellbook",
+            "Third floor: alchemist's lab (explosive potions!)",
+            "Fourth floor: summoning circle (something partially summoned)",
+            "Top floor: the wizard's study with the primary objective"
+        ],
+        "suggestedEncounters": [
+            "2 Animated Armor on the ground floor",
+            "Arcane trap: glyph of warding on the library entrance (DC 14 Int to spot)",
+            "1 Summoned creature (imp, quasit, or mephit) on the fourth floor",
+            "The wizard themselves (or their simulacrum) at the top"
+        ],
+        "tacticalNotes": "Each floor is self-contained — the party can rest between them if they secure the stairway. The alchemy lab is full of explosive reagents (improvised grenades: 2d6 fire damage in a 10-ft radius). The summoning circle can be disrupted (DC 15 Arcana) to banish what's inside.",
+        "lootSuggestions": [
+            "Spellbook with 3-5 spells",
+            "Potions of varying effects (roll randomly!)",
+            "Wand of Magic Missiles",
+            "Research notes on the campaign's main threat"
+        ],
+        "readAloudText": "The tower seems to hum with barely contained energy. The door is unlocked — suspiciously so. Inside, the air tastes of ozone and old parchment. Floating motes of light drift lazily through the foyer, and you notice the staircase ahead... is spiraling the wrong way. Up is down. Or is it? Your eyes hurt just looking at it. This place was built by someone who thought the laws of physics were more like guidelines."
+    },
+    {
+        "id": "map-005",
+        "name": "Darkwood Clearing",
+        "environment": "Wilderness",
+        "description": "A moonlit clearing in an ancient forest surrounded by massive, gnarled oaks. Standing stones form a circle at the center, covered in faintly glowing runes. The forest around it feels watchful and alive.",
+        "gridSize": "40x40",
+        "difficulty": "Easy to Medium",
+        "keyFeatures": [
+            "Stone circle with ritual significance",
+            "Massive fallen tree (natural barrier/bridge)",
+            "Dense undergrowth on the eastern edge (difficult terrain)",
+            "Ancient well at the north edge",
+            "Treeline offers cover on all sides"
+        ],
+        "suggestedEncounters": [
+            "Pack of 4 Wolves drawn to the party's campfire",
+            "1 Druid NPC conducting a ritual (could be ally or foe)",
+            "2 Will-o'-Wisps if the party investigates the well",
+            "Random encounter: owlbear den 100 yards east"
+        ],
+        "tacticalNotes": "The standing stones provide half cover. The fallen tree can be crossed with a DC 10 Acrobatics check. The undergrowth is 15-foot-deep difficult terrain — perfect for ambush. The well descends 40 feet to an underground spring.",
+        "lootSuggestions": [
+            "Rare herbs (component for potions)",
+            "Offering left at the stones (minor magic item)",
+            "Old coins at the bottom of the well",
+            "Druid's pouch with goodberries"
+        ],
+        "readAloudText": "The trees part ahead, revealing a clearing bathed in silver moonlight. Ancient standing stones rise from the grass like crooked teeth, their surfaces carved with spiraling runes that pulse with a faint, cold light. The forest around you has gone utterly silent — no insects, no wind, no birdsong. Just the soft glow of the stones and the feeling that you are being watched by something very, very old."
+    },
+    {
+        "id": "map-006",
+        "name": "Mountain Pass",
+        "environment": "Wilderness",
+        "description": "A narrow mountain trail winding between sheer cliff faces, with loose scree, howling winds, and precarious rope bridges spanning deep chasms. Snow dusts the higher elevations.",
+        "gridSize": "20x80",
+        "difficulty": "Medium",
+        "keyFeatures": [
+            "Narrow trail (5 feet wide in places)",
+            "Rope bridge over 200-foot chasm",
+            "Rocky outcropping with cave (potential shelter)",
+            "Avalanche-prone slope above the trail",
+            "Abandoned watchtower at the highest point"
+        ],
+        "suggestedEncounters": [
+            "4 Bandits set up an ambush at the narrows",
+            "1 Manticore attacking from above",
+            "Environmental: avalanche (DC 15 Dex save, 4d6 bludgeoning, buried = restrained)",
+            "Mountain goats (non-hostile, but blocking the path is funny)"
+        ],
+        "tacticalNotes": "The narrow trail means single-file movement in places — ranged attackers at the back are vulnerable. The rope bridge sways (DC 10 Acrobatics to cross at speed). The watchtower provides total cover and a commanding view.",
+        "lootSuggestions": [
+            "Bandit cache hidden in the cave",
+            "Old equipment in the watchtower",
+            "Eagle feathers (component, worth 5 gold each)",
+            "Mountain crystal cluster (worth 30 gold)"
+        ],
+        "readAloudText": "The trail narrows to a knife's edge between towering cliff walls. Wind howls through the gap like a wounded animal, tugging at your cloaks and threatening to push you toward the precipice. Far below, a river looks like a silver thread. Ahead, a rope bridge — frayed and weather-beaten — spans a chasm that drops into shadow. And somewhere above, between the craggy peaks, you hear the beat of massive wings."
+    },
+    {
+        "id": "map-007",
+        "name": "Marshwood Bog",
+        "environment": "Wilderness",
+        "description": "A murky, fog-choked swamp with islands of solid ground connected by rotting boardwalks. Dead trees reach from the muck like skeletal hands. The water bubbles with trapped gas, and things move beneath the surface.",
+        "gridSize": "50x50",
+        "difficulty": "Medium",
+        "keyFeatures": [
+            "Solid ground islands (5-6 scattered throughout)",
+            "Rotting boardwalk network",
+            "Sunken ruins partially visible in shallow water",
+            "Witch's hut on stilts",
+            "Quicksand pit (DC 13 Perception to spot)"
+        ],
+        "suggestedEncounters": [
+            "3-4 Lizardfolk defending their territory",
+            "1 Giant Crocodile lurking in the deep water",
+            "Will-o'-Wisps leading travelers into quicksand",
+            "Hag in the stilted hut (social encounter or combat)"
+        ],
+        "tacticalNotes": "The swamp water is difficult terrain. The boardwalks are narrow (5 feet) and rickety — more than 2 creatures causes a DC 12 Dex save or fall into the muck. Quicksand: DC 13 Str save or sink; restrained creatures sink 1 foot per round.",
+        "lootSuggestions": [
+            "Potion of Water Breathing in the ruins",
+            "Hag's collection of unusual ingredients",
+            "Waterlogged treasure chest (35 gold, a pearl worth 100 gold)",
+            "Maps to other locations carved on ruin walls"
+        ],
+        "readAloudText": "The ground grows soft beneath your feet, then gives way entirely to dark, stinking water. Fog rolls across the surface like a living thing, obscuring everything beyond twenty feet. Gnarled, leafless trees rise from the mire, their branches hung with pale moss. A rotting boardwalk — barely more than planks laid across the mud — extends ahead into the fog. Something dark and large slides through the water beside it, leaving a V-shaped wake. Then... silence."
+    },
+    {
+        "id": "map-008",
+        "name": "The Rusty Flagon Tavern",
+        "environment": "Urban",
+        "description": "A two-story tavern with a crowded common room, a stage for performers, private booths, a cellar full of secrets, and rooms upstairs. The perfect hub for information, intrigue, and bar fights.",
+        "gridSize": "30x30 (2 floors)",
+        "difficulty": "Varies",
+        "keyFeatures": [
+            "Common room with bar, tables, and fireplace",
+            "Performance stage in the corner",
+            "Private booth with curtains (for shady deals)",
+            "Kitchen with back door to the alley",
+            "Upstairs with 6 rental rooms",
+            "Cellar with hidden tunnel exit"
+        ],
+        "suggestedEncounters": [
+            "Bar fight! (4-6 Commoners/Bandits)",
+            "Assassination attempt on an NPC contact",
+            "Thieves' Guild meeting in the cellar",
+            "Barroom brawl with improvised weapons (chairs: 1d4, bottles: 1d4, table flip for cover)"
+        ],
+        "tacticalNotes": "The common room is cluttered — tables provide half cover, the bar provides three-quarters cover. The fireplace can be used as an environmental hazard. Upstairs, the narrow hallway limits movement. The cellar tunnel leads to the sewers.",
+        "lootSuggestions": [
+            "Information is the real loot here",
+            "A few gold from pick-pocketing (risky!)",
+            "Hidden stash behind a loose brick in the cellar",
+            "The innkeeper's ledger (blackmail material)"
+        ],
+        "readAloudText": "The door swings open to a wall of warmth, noise, and the smell of roasted meat. The Rusty Flagon is packed tonight — farmers elbow-to-elbow with merchants, a half-orc arm-wrestling a dwarf in the corner, and a bard on the small stage murdering a ballad about a dragon and a milkmaid. The bartender — a scarred woman with no patience for nonsense — spots you immediately. 'Weapons stay sheathed or you leave through the window. Drinks are two copper. Rooms are five silver. Information...' She smiles thinly. '...costs extra.'"
+    },
+    {
+        "id": "map-009",
+        "name": "Market Square",
+        "environment": "Urban",
+        "description": "A bustling town square with merchant stalls, a central fountain, a raised platform for announcements, and narrow alleyways branching off in every direction. Perfect for social encounters, chases, or sudden combat.",
+        "gridSize": "60x60",
+        "difficulty": "Varies",
+        "keyFeatures": [
+            "Central fountain with statue",
+            "Merchant stalls (20+ vendors)",
+            "Raised announcement platform",
+            "Clock tower on the east side",
+            "Narrow alleyways on all sides",
+            "Rooftop access from the blacksmith's shop"
+        ],
+        "suggestedEncounters": [
+            "Chase scene through the crowds",
+            "Pickpocket encounter (DC 14 Perception)",
+            "Public execution or trial the party can intervene in",
+            "Monster attack from the sewers below"
+        ],
+        "tacticalNotes": "Crowds act as difficult terrain and provide concealment. Stalls can be toppled (DC 12 Str) to create barriers. The fountain provides half cover. The clock tower has a ladder inside and provides a vantage point (advantage on ranged attacks from height). Chases use chase complications from the DMG.",
+        "lootSuggestions": [
+            "Rare goods from merchants (if you have gold)",
+            "Information from vendors who 'see everything'",
+            "Quest hooks from the notice board",
+            "Stolen goods recovered from a thief"
+        ],
+        "readAloudText": "The market square erupts around you in a riot of color and sound. Merchants hawk their wares with competitive fervor — 'FRESH FISH!' 'ENCHANTED TRINKETS, ONLY SLIGHTLY CURSED!' 'POTIONS! POTIONS! GET YOUR POTIONS!' A halfling child darts between legs, chased by an angry baker. A pair of guards patrol lazily, more interested in lunch than justice. At the center, a stone fountain burbles peacefully, the only calm thing in this controlled chaos."
+    },
+    {
+        "id": "map-010",
+        "name": "Noble's Manor",
+        "environment": "Urban",
+        "description": "A lavish three-story manor house with manicured gardens, guarded entrances, a grand ballroom, private chambers, and the inevitable secret passage. Perfect for heists, political intrigue, or investigating the host.",
+        "gridSize": "40x40 (3 floors)",
+        "difficulty": "Medium to Hard",
+        "keyFeatures": [
+            "Guarded front gate and courtyard",
+            "Grand ballroom with chandeliers",
+            "Study/office with a safe",
+            "Wine cellar with secret tunnel",
+            "Master bedroom with trapped jewelry box",
+            "Guard barracks attached to the manor"
+        ],
+        "suggestedEncounters": [
+            "Stealth infiltration past 4-6 Guards",
+            "Social encounter at a dinner party (role-playing challenge)",
+            "Discovery of the noble's dark secret in the study",
+            "Escape sequence if cover is blown"
+        ],
+        "tacticalNotes": "The manor has 8-12 guards on rotating patrols (DM should track routes). The chandelier can be dropped (DC 15 to cut the rope, 3d6 bludgeoning in a 10-ft area). The secret tunnel from the wine cellar exits 200 feet from the manor. The safe requires DC 18 Thieves' Tools or the combination (found in the study).",
+        "lootSuggestions": [
+            "Fine art and silverware (100-500 gold total if stolen)",
+            "Incriminating documents",
+            "Jewelry box (trapped: DC 14 to disarm, poison needle 1d4 + DC 11 Con save or poisoned)",
+            "Key to a secret vault elsewhere"
+        ],
+        "readAloudText": "The manor looms behind iron gates, all white marble and arched windows glowing with warm candlelight. Guards in polished livery stand at attention by the entrance. Inside, you catch glimpses of luxury — crystal chandeliers, oil paintings, servants in crisp uniforms gliding silently through corridors. Everything about this place whispers wealth and power. But the shadows between the candlelight seem deeper here, and the portrait eyes seem to follow you as you pass."
+    },
+    {
+        "id": "map-011",
+        "name": "The Sewer System",
+        "environment": "Urban",
+        "description": "A labyrinthine network of tunnels beneath the city, ankle-deep in foul water, with brick archways, iron grates, and the occasional surprising pocket of civilization hidden in the muck.",
+        "gridSize": "30x60",
+        "difficulty": "Easy to Medium",
+        "keyFeatures": [
+            "Main tunnel with flowing water (difficult terrain)",
+            "Maintenance alcoves (can hide in)",
+            "Thieves' Guild hideout behind a concealed door",
+            "Giant rat nest at a junction",
+            "Collapsed section requiring climbing",
+            "Exit grate near the river"
+        ],
+        "suggestedEncounters": [
+            "Swarm of Rats (2-3 swarms)",
+            "3-4 Bandits using the sewers as hideout",
+            "1 Crocodile that somehow got in",
+            "Ooze or slime creature in a dead-end tunnel"
+        ],
+        "tacticalNotes": "The tunnels are 10 feet wide and 8 feet tall. Water is ankle-deep (not quite difficult terrain, but a DC 10 Dex save when running or fall prone). Visibility limited beyond 30 feet. Echoes make Perception checks at disadvantage.",
+        "lootSuggestions": [
+            "Thieves' Guild treasure stash",
+            "Lost valuables washed down from above",
+            "Sewer map (useful for future infiltration)",
+            "A mysterious key dropped by someone who came through before"
+        ],
+        "readAloudText": "The iron grate groans as you pry it open, and the smell hits you like a physical force. Below, greenish water flows sluggishly through a brick tunnel that stretches into darkness in both directions. The sound of dripping is everywhere, punctuated by occasional splashes from things you'd rather not identify. Rats scatter from your torchlight. Somewhere deeper in the tunnels, you hear voices — faint, echoing, and definitely not supposed to be there."
+    },
+    {
+        "id": "map-012",
+        "name": "Dragon's Lair",
+        "environment": "Special",
+        "description": "A vast volcanic cavern serving as the lair of an ancient or adult dragon. Rivers of magma, towering columns of obsidian, a mountain of treasure, and oppressive heat make this the ultimate boss arena.",
+        "gridSize": "80x80",
+        "difficulty": "Hard to Deadly",
+        "keyFeatures": [
+            "Central treasure hoard on a raised platform",
+            "Magma rivers creating natural barriers",
+            "Obsidian pillars (full cover)",
+            "Collapsed ceiling section (open to sky — dragon can escape/re-enter)",
+            "Elevated ledges for ranged combatants",
+            "Secondary exit through an underwater passage"
+        ],
+        "suggestedEncounters": [
+            "THE DRAGON (Adult or Young, depending on party level)",
+            "Kobold servants defending the outer chambers",
+            "Fire elemental guardians near magma",
+            "Environmental: toxic fumes (DC 13 Con save each hour or 1 level of exhaustion)"
+        ],
+        "tacticalNotes": "The magma rivers deal 6d10 fire damage to anyone who falls in. Obsidian pillars provide full cover but can be destroyed (AC 17, 27 HP). The open ceiling lets the dragon fly out and do strafing runs with breath weapon. The treasure hoard is unstable — disturbing it causes gold avalanches (DC 12 Dex save or restrained).",
+        "lootSuggestions": [
+            "A DRAGON'S HOARD (scale to party level: 5,000-50,000 gold)",
+            "Magic items (2-4 items of appropriate rarity)",
+            "Dragon scales (material component for armor)",
+            "Ancient scrolls preserved by the heat"
+        ],
+        "readAloudText": "The heat hits you first — a wall of blistering air that makes your armor feel like an oven. Then your eyes adjust to the hellish orange glow, and you see it: a cavern so vast it could swallow a castle. Rivers of molten rock carve glowing channels through black stone. And there, at the center, atop a mountain of gold that glitters like a second sun... something breathes. Something enormous. One massive eye opens, its pupil a vertical slit of liquid fire. A voice like grinding boulders fills the cavern: 'I was wondering when you'd arrive.'"
+    }
+]

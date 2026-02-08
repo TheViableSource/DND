@@ -1,0 +1,342 @@
+[
+  {
+    "id": "npc-001",
+    "name": "Aldric Thornwood",
+    "race": "Human",
+    "role": "Quest Giver",
+    "class": "Noble",
+    "appearance": "A weathered man in his 50s with silver-streaked hair, deep worry lines, and a faded coat of arms on his cloak. He walks with a slight limp from an old war wound.",
+    "personality": ["Cautious", "Fatherly", "Haunted by past failures"],
+    "motivation": "Protect the village from growing threats while hiding his own dark secret",
+    "secret": "He accidentally unleashed the current threat years ago by breaking an ancient seal",
+    "cr": 1,
+    "dialogue": {
+      "greeting": "Ah, travelers! Thank the gods. I've been waiting for someone brave — or desperate — enough to help us. Please, sit. What I'm about to tell you... it's not easy to hear.",
+      "quest": "Something has taken root in the old mines east of here. Workers have gone missing — three this month alone. The guards won't go near it, and I... I can't blame them. I need outsiders. People who don't know enough to be afraid yet.",
+      "farewell": "Be careful out there. And one more thing — if you find anything unusual in the mines... anything that looks ancient... bring it to me first. Trust no one else with it."
+    }
+  },
+  {
+    "id": "npc-002",
+    "name": "Zara Nightbloom",
+    "race": "Half-Elf",
+    "role": "Ally",
+    "class": "Rogue",
+    "appearance": "Lean and sharp-eyed with cropped dark hair, a patchwork leather vest covered in hidden pockets, and a knowing smirk that never quite fades.",
+    "personality": ["Witty", "Fiercely loyal once trust is earned", "Hates authority"],
+    "motivation": "Gather enough gold to free her brother from a debtors' prison in a distant city",
+    "secret": "She's actually from a noble family she ran away from — her 'brother' is her twin",
+    "cr": 3,
+    "dialogue": {
+      "greeting": "Oh, you're the ones the mayor sent? Hm. You look... adequate. I'm Zara. If we're going to work together, here's rule one: don't touch my stuff.",
+      "quest": "I've been watching this place for weeks. I know every patrol route, every blind spot. But I can't do this alone — I need muscle, and maybe someone who can deal with the magical wards. That's where you come in.",
+      "farewell": "Hey — we did good work today. Maybe you're not as hopeless as I thought. Same time tomorrow? And bring potions. Lots of potions."
+    }
+  },
+  {
+    "id": "npc-003",
+    "name": "Brother Mathis",
+    "race": "Human",
+    "role": "Ally",
+    "class": "Cleric",
+    "appearance": "A stout, balding man with kind eyes and callused hands. Wears simple robes with a sun medallion, often covered in flour from the temple kitchen.",
+    "personality": ["Warm-hearted", "Stubborn about morality", "Surprisingly strong"],
+    "motivation": "Heal the sick and protect the vulnerable, though he's stretched dangerously thin",
+    "secret": "His healing abilities are fading, and he doesn't know why — a creeping corruption is affecting divine magic in the area",
+    "cr": 2,
+    "dialogue": {
+      "greeting": "Welcome, welcome! You look like you could use a warm meal and maybe a healing prayer or two. The temple is always open to those in need.",
+      "quest": "I must be honest with you — my abilities are weakening. Something is corrupting the divine energy in this region. If we don't find the source, I won't be able to heal anyone soon. Including your party.",
+      "farewell": "Go with the light, friends. And remember — true strength isn't in your sword arm. It's in knowing when NOT to swing."
+    }
+  },
+  {
+    "id": "npc-004",
+    "name": "Greta Ironpour",
+    "race": "Dwarf",
+    "role": "Neutral",
+    "class": "Blacksmith",
+    "appearance": "Broad-shouldered with fiery red hair in a thick braid, soot-smeared face, and arms like tree trunks. A masterwork hammer hangs at her side like a sidearm.",
+    "personality": ["Blunt", "Fair in business", "Secretly romantic"],
+    "motivation": "Forge a weapon worthy of her late master's legacy",
+    "secret": "She possesses the only map to a legendary adamantine vein, but fears what guards it",
+    "cr": 4,
+    "dialogue": {
+      "greeting": "You want something, you pay for it. This ain't a charity, and these arms ain't for hugging. Unless you've got adamantine. Then we can talk.",
+      "quest": "Alright, I'll tell you — but if word gets out, I'll deny it and break your kneecaps. There's a vein of pure adamantine in the Blackridge Mountains. I've got the map. But something... lives there. Something that ate my entire excavation crew.",
+      "farewell": "Your gear's ready. Try not to die — I hate waste. And if you happen to bring back any raw ore... I'll make it worth your while."
+    }
+  },
+  {
+    "id": "npc-005",
+    "name": "Pip Whittlethorn",
+    "race": "Halfling",
+    "role": "Neutral",
+    "class": "Innkeeper",
+    "appearance": "A cheerful halfling with rosy cheeks, a perpetual smile, and an apron that's seen better days. Always carrying a tray of something hot.",
+    "personality": ["Gossipy", "Generous to a fault", "Terrible at keeping secrets"],
+    "motivation": "Keep the Wandering Wyvern Inn profitable and make travelers feel at home",
+    "secret": "He overhears everything and accidentally passes information to both sides of every conflict",
+    "cr": 0,
+    "dialogue": {
+      "greeting": "Welcome to the Wandering Wyvern! Best ale in three counties, and I'm not just saying that because I brewed it! Table by the fire? And have you heard about the strange lights in the cemetery?",
+      "quest": "Oh, I probably shouldn't say anything, but... *leans in* ...I heard the merchant caravan that went through White Pass last week never arrived in Millhaven. Third one this season. The guards say it's bandits, but I heard howling from that direction, and it wasn't wolves.",
+      "farewell": "You be safe now! And come back for supper — I'm making my famous dragon pepper stew! Well, it's not ACTUALLY dragon pepper, but don't tell anyone that."
+    }
+  },
+  {
+    "id": "npc-006",
+    "name": "Vaelith Shadowmere",
+    "race": "Elf",
+    "role": "Antagonist",
+    "class": "Warlock",
+    "appearance": "Tall and gaunt with silver-white hair, eyes that shift between violet and pitch black, and robes adorned with shifting shadow-runes. An aura of unease follows them.",
+    "personality": ["Eloquent", "Manipulative", "Genuinely believes they're right"],
+    "motivation": "Open a gateway to the Shadowfell to reunite with a lost loved one, regardless of consequences",
+    "secret": "Their patron is actually using them as a vessel — the 'loved one' is already gone, and the gateway will unleash something far worse",
+    "cr": 8,
+    "dialogue": {
+      "greeting": "Ah, the heroes arrive. Right on schedule. Don't look so surprised — I've been watching your progress with great interest. You've exceeded my expectations.",
+      "quest": "You think I'm the villain? How quaint. I'm trying to bring someone back — someone the world forgot, someone who was taken from me by forces you can't comprehend. Tell me, hero... if it were YOUR loved one behind that veil, wouldn't you tear reality itself to bring them back?",
+      "farewell": "We'll meet again. And when we do, you'll have a choice to make. I hope, for both our sakes, you choose wisely. The offer to join me... remains open."
+    }
+  },
+  {
+    "id": "npc-007",
+    "name": "Captain Dorena Steelhand",
+    "race": "Human",
+    "role": "Quest Giver",
+    "class": "Fighter",
+    "appearance": "A stern woman in polished half-plate with a scar running from her left ear to her jaw. Short-cropped iron-gray hair, ramrod posture, and an ever-present hand on her sword hilt.",
+    "personality": ["Disciplined", "Protective of her soldiers", "Secretly fears she's not good enough"],
+    "motivation": "Defend the town at all costs while dealing with dwindling resources and morale",
+    "secret": "She's received orders to abandon the town, but is refusing to follow them",
+    "cr": 5,
+    "dialogue": {
+      "greeting": "State your business quickly. I've got sixty soldiers, a hundred civilians, and enough supplies for maybe two weeks. If you're here to help, talk. If not, stay out of the way.",
+      "quest": "We need to hold this crossing for ten more days until the reinforcements arrive. The problem? Something is organizing the monsters — they're hitting us in coordinated waves. That's not random. Someone or something is leading them, and I need you to find out who.",
+      "farewell": "You've got guts, I'll give you that. My scouts will brief you at dawn. And one more thing — if things go south out there, you get back here alive. Dead heroes are useless to me."
+    }
+  },
+  {
+    "id": "npc-008",
+    "name": "Finnegan 'Fingers' Marlow",
+    "race": "Human",
+    "role": "Neutral",
+    "class": "Bard",
+    "appearance": "A charismatic man with twinkling green eyes, a lute slung over his back, and fingers that never stop moving — tapping, picking pockets, or strumming chords.",
+    "personality": ["Charming", "Unreliable", "Knows more than he lets on"],
+    "motivation": "Collect the greatest stories ever told — even if he has to create the chaos that generates them",
+    "secret": "He's actually a spy for a rival kingdom, gathering intelligence under cover of entertainment",
+    "cr": 3,
+    "dialogue": {
+      "greeting": "*strums a chord* Well, well... adventurers! My favorite subjects. Buy me a drink and I'll sing you a tale. Buy me two, and I'll tell you the truth.",
+      "quest": "Here's the thing about songs — the best ones are about real places. I know where the Dragon's Hoard actually is. Not the legend, the real one. But I need an escort. The road there is... let's say 'musically inspiring' and leave it at that.",
+      "farewell": "Oh, this is going to make an EXCELLENT ballad. Try not to die before I finish the third verse, would you? It really ruins the rhythm."
+    }
+  },
+  {
+    "id": "npc-009",
+    "name": "Thokk Bonecrusher",
+    "race": "Half-Orc",
+    "role": "Ally",
+    "class": "Barbarian",
+    "appearance": "Massive, even for a half-orc, with ritual scars across his chest, a surprisingly gentle face, and a great-axe strapped to his back that most humans couldn't lift.",
+    "personality": ["Quiet", "Thoughtful despite appearances", "Fiercely protective of children"],
+    "motivation": "Find a place where he's judged by his actions, not his blood",
+    "secret": "He was once a war chief who led a devastating raid — he left his tribe out of shame and seeks redemption",
+    "cr": 5,
+    "dialogue": {
+      "greeting": "...You don't run when you see Thokk. That's good. Most do. Thokk is... looking for work. Strong work. The kind where Thokk can help people instead of hurt them.",
+      "quest": "The children from the village at the river. Taken. Thokk tracked them to the caves in the western hills. Goblin raiders, maybe thirty. Thokk can fight, but Thokk cannot fight thirty and protect children. You help Thokk?",
+      "farewell": "Thokk remembers kindness. If you need Thokk's axe again, you call. Thokk owes you... a debt of honor."
+    }
+  },
+  {
+    "id": "npc-010",
+    "name": "Madame Isolde",
+    "race": "Tiefling",
+    "role": "Neutral",
+    "class": "Diviner",
+    "appearance": "Deep crimson skin, spiraling ram's horns adorned with gold rings, and milky-white eyes that seem to look through you. Draped in layers of dark silk and jangling charms.",
+    "personality": ["Cryptic", "Genuinely caring beneath the mystique", "Addicted to dramatic flair"],
+    "motivation": "Prevent a catastrophic future she's seen in her visions",
+    "secret": "Her visions show two possible futures — one where the party succeeds gloriously, and one where they cause the very disaster they're trying to prevent",
+    "cr": 6,
+    "dialogue": {
+      "greeting": "I knew you were coming. *pause* Alright, that's a lie — I say that to everyone. But I DID know you were coming. The cards told me. Sit, sit. Let Isolde peer beyond the veil for you.",
+      "quest": "The future is... unsettled. I see two paths, and they twist around each other like serpents. In one, you stand triumphant over a defeated evil. In the other... you ARE the evil. The deciding factor? A choice you'll face in a place underground. Beyond that, the vision gets... fuzzy.",
+      "farewell": "Take this charm — it won't save your life, but it will make your death 15% less painful. *winks* I'm kidding. Mostly. Go carefully, and remember: the future is written in pencil, not ink."
+    }
+  },
+  {
+    "id": "npc-011",
+    "name": "Lord Percival Ashengrey",
+    "race": "Human",
+    "role": "Antagonist",
+    "class": "Noble / Wizard",
+    "appearance": "Impeccably dressed in dark velvet, silver ring on every finger, with a politician's smile and the cold eyes of a predator. Graying temples give him an air of false wisdom.",
+    "personality": ["Charming on the surface", "Ruthlessly ambitious", "Views people as chess pieces"],
+    "motivation": "Consolidate political power by controlling the flow of magical artifacts",
+    "secret": "He's been funding the bandits and monster attacks to justify his private army and emergency powers",
+    "cr": 7,
+    "dialogue": {
+      "greeting": "Welcome! The famous adventurers — I've heard so much about your exploits. Please, help yourself to wine. It's from my personal vineyard. I believe we can be of great use to each other.",
+      "quest": "These attacks on the trade routes are ruining us all. I'm prepared to offer you a very generous bounty for each bandit leader you deliver to me. And if you happen to find any... unusual items in their possession, I'd pay handsomely for those as well. Privately.",
+      "farewell": "A pleasure, truly. My steward will handle the details. Oh, and do be careful with whom you share information about our arrangement. Not everyone in this city appreciates... initiative."
+    }
+  },
+  {
+    "id": "npc-012",
+    "name": "Wren Mosswalker",
+    "race": "Gnome",
+    "role": "Ally",
+    "class": "Druid",
+    "appearance": "Barely three feet tall with wild green-tinted hair full of actual leaves and twigs, moss-colored skin, and eyes that reflect light like a cat's. Usually accompanied by a squirrel familiar.",
+    "personality": ["Eccentric", "Passionately environmentalist", "Talks to animals more than people"],
+    "motivation": "Stop the spreading blight that's killing the ancient forest she calls home",
+    "secret": "The blight is connected to the same ancient seal that was broken — she can feel the corruption in the ley lines",
+    "cr": 4,
+    "dialogue": {
+      "greeting": "Shh! You're stepping on a very important mushroom! ...Oh. You're the tall-folk the trees whispered about. Yes, they talk. No, I'm not crazy. Well, maybe a little. But the trees are right about you.",
+      "quest": "The forest is dying. Not the normal kind of dying — the WRONG kind. Trees that have stood for a thousand years are rotting from the inside. The animals are fleeing. And something in the deep wood is... laughing. I can hear it at night. I need help finding the source.",
+      "farewell": "Thank you for listening. Most people just smile and back away slowly. Take this pouch of berries — they'll cure poison once. And say hello to the oak tree on your left. She likes compliments."
+    }
+  },
+  {
+    "id": "npc-013",
+    "name": "Kregg the Scarred",
+    "race": "Goblin",
+    "role": "Neutral",
+    "class": "Rogue / Merchant",
+    "appearance": "A surprisingly well-dressed goblin with a top hat, a monocle over one scarred eye, and a coat with more hidden compartments than a wizard's tower.",
+    "personality": ["Shrewd businessman", "Surprisingly honorable for a goblin", "Loves shiny things"],
+    "motivation": "Prove that goblins can be more than monsters — build a legitimate business empire",
+    "secret": "He has contacts in every criminal organization in the region and sells information to all sides equally",
+    "cr": 2,
+    "dialogue": {
+      "greeting": "Psst! Yes, you, the adventurer-types! Kregg has wares, if you have coin. Legal wares! Mostly legal. ...Technically legal in at least two jurisdictions.",
+      "quest": "Kregg has a business proposition. There is a shipment — Kregg's shipment, paid for fair and square (mostly) — stuck in a warehouse guarded by thugs who reneged on a deal. Kregg needs muscle. Kregg pays well. Cash AND information. You want to know who's really running things in this town? Kregg knows.",
+      "farewell": "Pleasure doing business! Kregg will be here. Kregg is always here. If Kregg is NOT here, it means something very bad has happened and you should probably run."
+    }
+  },
+  {
+    "id": "npc-014",
+    "name": "Sister Seraphina",
+    "race": "Aasimar",
+    "role": "Quest Giver",
+    "class": "Paladin",
+    "appearance": "Radiant golden skin with faint luminescent markings, platinum-blonde hair, and armor that gleams even in dim light. Her expression carries a weight of divine responsibility.",
+    "personality": ["Compassionate", "Burdened by duty", "Struggles with doubts she hides from everyone"],
+    "motivation": "Root out a cult that's infiltrated the local government before they complete a dark ritual",
+    "secret": "Her celestial patron has gone silent, and she's terrified it means she's failed some divine test",
+    "cr": 7,
+    "dialogue": {
+      "greeting": "I've prayed for aid, and the heavens sent... you. *slight pause* Forgive me — that sounded better in my head. I am Sister Seraphina, and I desperately need your help.",
+      "quest": "A cult — the Whisperers of the Final Dawn — has embedded agents in the town council. They're preparing a ritual during the next lunar eclipse, three weeks from now. If they succeed, the barrier between our world and the Abyss will thin. I have names, but I need proof. And I need it quietly.",
+      "farewell": "Walk in the light, friends. And if you find yourselves in the dark... make your own. That's what the rest of us do."
+    }
+  },
+  {
+    "id": "npc-015",
+    "name": "Old Barrow Tam",
+    "race": "Human",
+    "role": "Neutral",
+    "class": "Hermit / Former Wizard",
+    "appearance": "An ancient, hunched figure wrapped in tattered robes, with a long white beard stained with potion residue. One eye is clouded over; the other burns with unsettling clarity.",
+    "personality": ["Rambling", "Brilliant when focused", "Speaks in riddles because he genuinely forgets how normal conversation works"],
+    "motivation": "Finish his life's work — a spell that could 'fix everything' (he's vague on what 'everything' means)",
+    "secret": "He was once an archmage who intentionally erased his own memory to forget something too dangerous to know — but fragments are leaking back",
+    "cr": 9,
+    "dialogue": {
+      "greeting": "Hmm? Who? Oh. You're real. Good. Last three visitors were hallucinations. Or were they? ...No, they definitely were. ANYWAY. What do you want? Make it quick, I'm in the middle of remembering something important. Or was I forgetting something important?",
+      "quest": "The thing — the BIG thing — it's coming back. I sealed it, oh, decades ago. Or someone did. Maybe it was me? The point is, the seal is cracking. I can feel it in my bad eye. You need the three keystones to repair it. One is in the sunken temple. One is with the dragon. And one... *trails off* ...I'll remember the third one eventually.",
+      "farewell": "Go, go! Time is — well, time is relative when you've studied chronomancy, but for YOU, it's very much running out. Take this — *hands over a seemingly random object* — you'll know what to do with it when the moment comes. Probably."
+    }
+  },
+  {
+    "id": "npc-016",
+    "name": "Duchess Ravenna Blackthorn",
+    "race": "Human",
+    "role": "Antagonist",
+    "class": "Vampire / Noble",
+    "appearance": "Strikingly beautiful with alabaster skin, midnight-black hair, and eyes like polished garnets. Dressed in an elaborate crimson gown with a high collar. Her movements are unnervingly graceful.",
+    "personality": ["Sophisticated", "Predatory charm", "Views mortals with a mixture of nostalgia and hunger"],
+    "motivation": "Maintain her centuries-old dynasty and expand her territory through political manipulation",
+    "secret": "She's actually the founder of the town and has been manipulating its leadership for 300 years through a series of 'descendants'",
+    "cr": 13,
+    "dialogue": {
+      "greeting": "My, my... fresh blood in town. *smiles* Oh, don't look so alarmed — it's merely a figure of speech. I am Duchess Blackthorn. You must be the adventurers everyone is whispering about. Won't you join me for dinner?",
+      "quest": "There are those who threaten the stability of this town — MY town, though I prefer not to be so possessive in public. A rival has moved in, someone far less... civilized than myself. They're turning my people. I can't have that. Dispatch them, and I'll ensure you're rewarded beyond your wildest imagining.",
+      "farewell": "Such fascinating creatures, you mortals. So brief, yet so... bright. *touches your cheek with an ice-cold finger* Do try to stay alive. I find myself... curious about how your story ends."
+    }
+  },
+  {
+    "id": "npc-017",
+    "name": "Torbin Galeheart",
+    "race": "Human",
+    "role": "Ally",
+    "class": "Ranger",
+    "appearance": "Sun-weathered skin, a long scar across his nose, and keen hazel eyes. Wears practical leathers with a well-used longbow and a wolf-tooth necklace. Moves through forests like smoke.",
+    "personality": ["Quiet", "Observant", "Trusts animals more than people but slowly opening up"],
+    "motivation": "Track down the creature that destroyed his ranger outpost and killed his companions",
+    "secret": "The creature he's hunting is a corrupted treant — it used to be the forest guardian he swore an oath to protect",
+    "cr": 5,
+    "dialogue": {
+      "greeting": "...You're loud. All of you. I heard you coming from half a mile away. If what's out there heard you too, we'll have problems. I'm Torbin. Keep your voices down and we might live through this.",
+      "quest": "Something's hunting in these woods. Not a normal predator — something that used to protect this forest. It turned... wrong. I've tracked it for weeks. It's heading toward the village. I can't take it alone, and I won't let more people die. Will you help?",
+      "farewell": "You fight well. Not gracefully, but effectively. I'll scout ahead and mark the trail. Look for broken branches and claw marks. And for the love of all gods, walk QUIETLY."
+    }
+  },
+  {
+    "id": "npc-018",
+    "name": "Myrra Copperkettle",
+    "race": "Halfling",
+    "role": "Neutral",
+    "class": "Alchemist",
+    "appearance": "A plump, perpetually soot-covered halfling with singed eyebrows (they grow back thinner each time), big round goggles pushed up on her forehead, and stained leather gloves.",
+    "personality": ["Enthusiastically reckless with experiments", "Deeply caring about her customers", "Cannot resist saying 'what if we added more?'"],
+    "motivation": "Invent a potion that's never been made before — she doesn't care what it does, she wants to be first",
+    "secret": "She accidentally created an incredibly dangerous mutagenic compound and hid it instead of destroying it",
+    "cr": 3,
+    "dialogue": {
+      "greeting": "Oh! Customers! Watch your step — and don't touch the green bottle. Or the blue one. Actually, don't touch any bottles. But welcome! Everything's for sale! Mostly!",
+      "quest": "I need three ingredients — moonshadow moss from the cave under the waterfall, a vial of phase spider venom, and... *checks notes* ...the still-beating heart of a flame elemental. Okay, that last one is optional. But the potion would be SO much better with it.",
+      "farewell": "Here are your potions! The red one heals. The blue one... well, I'm 80% sure the blue one makes you invisible. Could also turn your bones into jelly. Only one way to find out! Good luck!"
+    }
+  },
+  {
+    "id": "npc-019",
+    "name": "The Grey Stranger",
+    "race": "Unknown",
+    "role": "Quest Giver",
+    "class": "Unknown",
+    "appearance": "Always appears in shadow, regardless of lighting. Wears a featureless grey cloak and mask. Voice sounds like wind through dead trees. No visible weapons, yet radiates danger.",
+    "personality": ["Enigmatic", "Speaks only in necessary truths", "Neither good nor evil — serves 'balance'"],
+    "motivation": "Ensure the cosmic balance is maintained — will help heroes or villains depending on what's needed",
+    "secret": "An avatar of a neutral deity sent to observe and occasionally intervene in mortal affairs",
+    "cr": 20,
+    "dialogue": {
+      "greeting": "You have questions. I have answers. Whether they're the answers you want... that depends on the questions you're brave enough to ask.",
+      "quest": "The scales are tipping. An imbalance grows in the east — too much power concentrated in too few hands. Or perhaps too many threats left unchecked in the west. Both threaten the equilibrium. I have a task for you, and I will not offer it twice.",
+      "farewell": "You've chosen well. Or poorly. Time will tell. We will not meet again unless the balance demands it. And if it does... be ready."
+    }
+  },
+  {
+    "id": "npc-020",
+    "name": "Bramble",
+    "race": "Goblin (reformed)",
+    "role": "Ally",
+    "class": "Artificer",
+    "appearance": "A small, green-skinned goblin wearing oversized artificer's goggles and a vest covered in gears, springs, and tiny mechanical spiders. Missing two fingers on his left hand (lost to inventions).",
+    "personality": ["Hyperactive", "Genius-level intelligence hidden behind broken Common", "Desperately wants friends"],
+    "motivation": "Build things that help people and prove goblins can create, not just destroy",
+    "secret": "He's building a mechanical guardian to protect the village, but it's becoming sentient and he doesn't know how to handle it",
+    "cr": 3,
+    "dialogue": {
+      "greeting": "Hello hello! You are big-folk! Very big! Bramble is small but Bramble makes big things! See? *holds up a smoking gadget* This is... hmm. It WAS a toaster. Now it might be a weapon. Bramble is still testing!",
+      "quest": "Bramble has problem. Bramble built a thing — a big thing! Very smart thing! But now the thing... talks. And the thing has opinions. And the thing wants to 'protect village' which sounds good but the thing's idea of protecting is... aggressive. Very aggressive. Maybe you help Bramble calm the thing down before it calms the village down? Permanently?",
+      "farewell": "You are good friends! Best friends! Bramble will make you things! Useful things! Probably! Come back soon and Bramble will have gifts! ...They will probably not explode!"
+    }
+  }
+]

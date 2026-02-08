@@ -1,0 +1,209 @@
+{
+    "categories": [
+        {
+            "id": "combat",
+            "name": "Combat",
+            "icon": "⚔️",
+            "rules": [
+                {
+                    "title": "Initiative",
+                    "content": "At the start of combat, everyone rolls a d20 + Dexterity modifier. Higher goes first. This determines turn order for the entire fight.",
+                    "example": "A Ranger with +3 Dex rolls a 14. Initiative = 17. They go before the Orc who rolled 12."
+                },
+                {
+                    "title": "Your Turn",
+                    "content": "On your turn, you get: 1 Action (attack, cast a spell, dash, etc.), 1 Bonus Action (if something grants it), Movement (up to your speed), and 1 Free Interaction (open a door, draw a weapon).",
+                    "example": "A Fighter moves 30 ft., attacks with their sword (Action), and uses Second Wind to heal (Bonus Action)."
+                },
+                {
+                    "title": "Attack Rolls",
+                    "content": "Roll a d20 + ability modifier + proficiency bonus. If the total equals or beats the target's AC, you hit! Natural 20 = critical hit (double damage dice). Natural 1 = automatic miss.",
+                    "example": "Attacking with a longsword: d20 + Strength mod (+3) + Proficiency (+2) = d20+5 vs. AC 15."
+                },
+                {
+                    "title": "Damage",
+                    "content": "When you hit, roll the weapon's damage dice + ability modifier. Melee: usually Strength. Ranged: usually Dexterity. Spells: as described in the spell.",
+                    "example": "Longsword hit: 1d8 + 3 (Str) = 3-11 damage. Critical hit: 2d8 + 3 = 5-19 damage."
+                },
+                {
+                    "title": "Common Conditions",
+                    "content": "Blinded: Can't see, auto-fail sight checks, attacks have disadvantage, attacks against have advantage. Frightened: Disadvantage on ability checks and attacks while source of fear is in line of sight. Can't willingly move closer. Prone: Disadvantage on attacks. Melee attacks against have advantage, ranged have disadvantage. Use half your movement to stand up. Restrained: Speed becomes 0. Attacks have disadvantage. Attacks against have advantage. Dex saves at disadvantage. Stunned: Can't move or speak. Auto-fail Str and Dex saves. Attacks against have advantage.",
+                    "example": "A fighter is knocked Prone by a wolf. The wolf gets advantage on its next bite. The fighter uses 15 ft. of their 30 ft. movement to stand up."
+                },
+                {
+                    "title": "Death Saving Throws",
+                    "content": "When a player hits 0 HP, they're unconscious and dying. On each turn, they roll a d20: 10+ = success, 9 or below = failure. 3 successes = stabilized (alive but unconscious). 3 failures = dead. Natural 20 = regain 1 HP. Natural 1 = 2 failures.",
+                    "example": "A player drops to 0 HP. Turn 1: rolls 14 (1 success). Turn 2: rolls 6 (1 failure). Turn 3: rolls 18 (2 successes). Turn 4: rolls 12 (3 successes — stabilized!)."
+                },
+                {
+                    "title": "Opportunity Attacks",
+                    "content": "When a creature moves OUT of your reach, you can use your reaction to make one melee attack against it. This uses up your reaction until your next turn.",
+                    "example": "An Orc tries to run past the Fighter. The Fighter uses their reaction to swing at the Orc as it passes."
+                },
+                {
+                    "title": "Cover",
+                    "content": "Half cover (+2 AC and Dex saves): behind a low wall, another creature. Three-quarters cover (+5 AC and Dex saves): behind a thick tree, arrow slit. Total cover: completely concealed, can't be targeted directly.",
+                    "example": "A Rogue hiding behind a stone pillar has three-quarters cover. Their AC 14 becomes effectively 19 vs. ranged attacks."
+                },
+                {
+                    "title": "Advantage & Disadvantage",
+                    "content": "Advantage: Roll 2d20, take the HIGHER result. Disadvantage: Roll 2d20, take the LOWER result. They cancel each other out (even multiple sources).",
+                    "example": "Attacking a prone creature in melee: advantage. Attacking while blinded: disadvantage. Both? They cancel — roll normally."
+                }
+            ]
+        },
+        {
+            "id": "skills",
+            "name": "Skills & Ability Checks",
+            "icon": "🎯",
+            "rules": [
+                {
+                    "title": "Making a Check",
+                    "content": "Roll a d20 + ability modifier (+ proficiency bonus if proficient in the skill). Compare to the DC (Difficulty Class) set by the DM.",
+                    "example": "Climbing a wall: Athletics check. DC 10 (easy wall) or DC 20 (sheer cliff)."
+                },
+                {
+                    "title": "DC Quick Reference",
+                    "content": "DC 5: Very Easy (almost anyone can do it). DC 10: Easy (most people succeed). DC 15: Medium (requires some skill). DC 20: Hard (skilled individuals). DC 25: Very Hard (exceptional skill needed). DC 30: Nearly Impossible (legendary feats).",
+                    "example": "Picking a simple lock: DC 10. Picking a masterwork lock: DC 20. Picking a magical lock: DC 25+."
+                },
+                {
+                    "title": "Strength Skills",
+                    "content": "Athletics: Climbing, jumping, swimming, grappling, forcing open doors. Used for physical feats of power and endurance.",
+                    "example": "DC 10: Climb a knotted rope. DC 15: Swim against a strong current. DC 20: Break down a reinforced door."
+                },
+                {
+                    "title": "Dexterity Skills",
+                    "content": "Acrobatics: Balance, tumbling, escaping grapples. Sleight of Hand: Pickpocketing, concealing items, tricks. Stealth: Moving silently, hiding.",
+                    "example": "DC 12: Walk across a narrow beam. DC 15: Pick someone's pocket in a crowd. DC 14: Sneak past a guard."
+                },
+                {
+                    "title": "Intelligence Skills",
+                    "content": "Arcana: Magic knowledge. History: Historical events. Investigation: Finding clues, deduction. Nature: Plants, animals, weather. Religion: Deities, rites, undead.",
+                    "example": "DC 12: Identify a common spell. DC 15: Know the history of a ruin. DC 18: Identify a rare magical artifact."
+                },
+                {
+                    "title": "Wisdom Skills",
+                    "content": "Animal Handling: Calm or control animals. Insight: Detect lies, read intent. Medicine: Stabilize dying, diagnose illness. Perception: Spot hidden things, notice details. Survival: Track, forage, navigate.",
+                    "example": "DC 12: Notice a hidden door. DC 15: Tell if someone is lying. DC 13: Track footprints in mud."
+                },
+                {
+                    "title": "Charisma Skills",
+                    "content": "Deception: Lying convincingly. Intimidation: Threaten or coerce. Performance: Entertain an audience. Persuasion: Convince or negotiate.",
+                    "example": "DC 10: Convince a friendly NPC. DC 15: Bluff past a guard. DC 20: Intimidate a crime boss."
+                },
+                {
+                    "title": "Passive Checks",
+                    "content": "10 + all modifiers that normally apply. Used when the DM wants to secretly check if a character notices something without asking for a roll. Most common: Passive Perception.",
+                    "example": "A Rogue with +5 Perception has Passive Perception 15. They automatically notice anything with a DC 15 or lower to spot."
+                },
+                {
+                    "title": "Contested Checks",
+                    "content": "When two creatures are competing (grappling, hiding vs. seeking), both roll. Higher total wins. Tie goes to the one being resisted (defender).",
+                    "example": "Grapple: Attacker rolls Athletics vs. target's Athletics or Acrobatics. Hide: Stealth vs. Perception."
+                }
+            ]
+        },
+        {
+            "id": "magic",
+            "name": "Magic",
+            "icon": "✨",
+            "rules": [
+                {
+                    "title": "Spell Slots",
+                    "content": "Spellcasters have a limited number of spell slots per level. Casting a spell uses a slot of that spell's level or higher. Slots are restored after a long rest (some classes restore on short rest).",
+                    "example": "A 3rd-level Wizard has four 1st-level slots and two 2nd-level slots. They can cast Burning Hands (1st level) using either a 1st or 2nd-level slot."
+                },
+                {
+                    "title": "Cantrips",
+                    "content": "Cantrips are spells you can cast at will, without using a spell slot. They scale automatically at certain levels (5, 11, 17).",
+                    "example": "Fire Bolt: 1d10 fire damage at level 1, scales to 2d10 at level 5, 3d10 at level 11, 4d10 at level 17."
+                },
+                {
+                    "title": "Spell Attack vs. Save",
+                    "content": "Some spells require a spell attack roll (d20 + spellcasting mod + proficiency). Others forces the target to make a saving throw against your Spell Save DC (8 + proficiency + spellcasting mod).",
+                    "example": "Fire Bolt: spell attack roll. Fireball: Dex save against spell save DC. A Wizard with +4 Int and +3 proficiency: Spell Save DC = 15."
+                },
+                {
+                    "title": "Concentration",
+                    "content": "Some spells require concentration. You can only concentrate on ONE spell at a time. Casting another concentration spell ends the first. Taking damage: make a Constitution save (DC 10 or half the damage, whichever is higher). Failure = spell ends.",
+                    "example": "Concentrating on Bless, then casting Hold Person? Bless ends. Taking 22 damage while concentrating? DC 11 Con save (half of 22)."
+                },
+                {
+                    "title": "Ritual Casting",
+                    "content": "Spells with the 'ritual' tag can be cast without using a spell slot by adding 10 minutes to the casting time. The caster must have the spell prepared (or in their spellbook for Wizards).",
+                    "example": "Detect Magic normally takes 1 action and a spell slot. As a ritual: 10 minutes and 1 action, no slot used."
+                },
+                {
+                    "title": "Components",
+                    "content": "V (Verbal): Must be able to speak. S (Somatic): Need a free hand for gestures. M (Material): Need specific items (or a component pouch/focus replaces most materials unless a gold cost is listed).",
+                    "example": "A cleric gagged and bound can't cast spells with V or S components. Revivify requires a 300gp diamond — a focus doesn't replace this."
+                }
+            ]
+        },
+        {
+            "id": "exploration",
+            "name": "Exploration & Travel",
+            "icon": "🗺️",
+            "rules": [
+                {
+                    "title": "Travel Pace",
+                    "content": "Fast: 4 miles/hour, 30 miles/day. -5 to passive Perception. Normal: 3 miles/hour, 24 miles/day. Slow: 2 miles/hour, 18 miles/day. Can use Stealth.",
+                    "example": "The party needs to travel 48 miles. At normal pace, that's 2 days. At fast pace, about 1.5 days but they might miss hidden things."
+                },
+                {
+                    "title": "Resting",
+                    "content": "Short Rest (1 hour): Spend Hit Dice to heal. Roll each Hit Die spent + Constitution modifier. Some features recharge on short rest. Long Rest (8 hours): Regain ALL hit points. Regain spent Hit Dice (up to half your total). Spell slots reset. Must sleep at least 6 hours. Only one long rest per 24 hours.",
+                    "example": "A level 3 Fighter (d10 Hit Dice, +2 Con) takes a short rest. They spend 2 Hit Dice: (d10+2) + (d10+2) = 6-24 HP restored."
+                },
+                {
+                    "title": "Light & Vision",
+                    "content": "Bright Light: Normal vision. Dim Light: Lightly obscured, disadvantage on Perception checks relying on sight. Darkness: Heavily obscured, effectively blinded. Darkvision: See in dim light as bright light, darkness as dim light (up to stated range). Colors appear as shades of gray.",
+                    "example": "A human without a torch in a dark dungeon is effectively blind. A dwarf with Darkvision 60 ft. can see, but in grayscale and with disadvantage on sight-based Perception."
+                },
+                {
+                    "title": "Foraging",
+                    "content": "During travel, characters can forage for food and water. DC depends on terrain: Forest DC 10, Grasslands DC 10, Coast DC 10, Desert DC 20, Arctic DC 15. One character can forage enough for themselves + others on a good roll.",
+                    "example": "A Ranger with +5 Survival foraging in a forest (DC 10) will almost always succeed. In a desert (DC 20), it's a real challenge."
+                },
+                {
+                    "title": "Random Encounters",
+                    "content": "As DM, you can check for random encounters by rolling a d20 periodically (every hour of travel or each night). On an 18-20 (or whatever you set), an encounter occurs. Roll on your encounter table or choose one that makes sense.",
+                    "example": "Traveling through goblin territory? Encounter on 17-20. Through safe farmland? Encounter only on 20. The encounter doesn't have to be combat — it could be a merchant, a storm, or a clue."
+                }
+            ]
+        },
+        {
+            "id": "social",
+            "name": "Social Interaction",
+            "icon": "💬",
+            "rules": [
+                {
+                    "title": "NPC Attitudes",
+                    "content": "NPCs have a starting attitude toward the party: Friendly (helpful, minimal persuasion needed), Indifferent (need convincing, moderate DCs), Hostile (opposed, high DCs, some things impossible without changing attitude first).",
+                    "example": "A friendly innkeeper: DC 10 to get information. A hostile guard: DC 20 to convince, or DC 15 with a bribe."
+                },
+                {
+                    "title": "Persuasion vs. Deception vs. Intimidation",
+                    "content": "Persuasion: Honest appeal, logical argument, charm. Works best long-term. Deception: Lying or misleading. Works until discovered — then massive trust loss. Intimidation: Threats and coercion. Quick results but makes enemies. The player describes WHAT they say, not just 'I persuade them.'",
+                    "example": "Good: 'I tell the guard our friend inside is gravely ill and if they don't let us in, they'll have blood on their hands.' Bad: 'I roll persuasion.'"
+                },
+                {
+                    "title": "When NOT to Roll",
+                    "content": "Some things are impossible regardless of the roll. A DC 30 Persuasion can't make a king give you his crown. No roll changes an NPC's fundamental nature. If something is automatic (asking a friend for directions), don't roll. Only roll when there's meaningful uncertainty.",
+                    "example": "Persuading a loyal guard to betray their king? Not possible with one roll. Persuading them to look the other way for 5 minutes? Possible with a great roll and good reasoning."
+                },
+                {
+                    "title": "Insight Checks",
+                    "content": "Use Insight to read an NPC: are they lying? What do they really want? Are they hiding something? This is the 'lie detector' skill but it's not mind-reading — it detects deception, not truth.",
+                    "example": "The merchant says the goods are genuine. Player rolls Insight vs. merchant's Deception. Success: 'You notice the merchant's eyes flicker to the back room — they're hiding something.' Failure: 'They seem sincere enough.'"
+                },
+                {
+                    "title": "Group Checks",
+                    "content": "When the whole group tries something together, everyone rolls. If at least HALF the group succeeds, the whole group succeeds. Great for stealth, climbing, or navigating as a party.",
+                    "example": "The party of 4 tries to sneak past guards (DC 14 Stealth). Results: 18, 12, 16, 8. Two succeed, two fail. Since exactly half succeeded... DM's call! Most DMs rule this as a narrow success."
+                }
+            ]
+        }
+    ]
+}
