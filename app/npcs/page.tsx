@@ -574,33 +574,23 @@ export default function NPCsPage() {
                 )}
 
                 <div className={styles.layout}>
-                    {/* NPC Grid */}
+                    {/* NPC List */}
                     <div className={styles.grid}>
                         {filtered.map((npc) => (
                             <button
                                 key={npc.id}
-                                className={`${styles.npcCard} ${selectedNPC === npc.id ? styles.selected : ""}`}
+                                className={`${styles.npcRow} ${selectedNPC === npc.id ? styles.selected : ""}`}
                                 onClick={() => setSelectedNPC(npc.id)}
                             >
-                                <div className={styles.npcHeader}>
-                                    <h3>{npc.name}</h3>
-                                    <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-                                        {npc.saved && <span className={styles.savedBadge}>SAVED</span>}
-                                        <span className={`badge ${roleColors[npc.role] || "badge-gold"}`}>
-                                            {npc.role}
-                                        </span>
-                                    </div>
+                                <div className={styles.npcRowInfo}>
+                                    <span className={styles.npcRowName}>{npc.name}</span>
+                                    <span className={styles.npcRowMeta}>{npc.race} · {npc.class}</span>
                                 </div>
-                                <p className={styles.npcMeta}>
-                                    {npc.race} · {npc.class}
-                                </p>
-                                <p className={styles.npcDesc}>{npc.appearance.slice(0, 100)}...</p>
-                                <div className={styles.traits}>
-                                    {npc.personality.map((t) => (
-                                        <span key={t} className={styles.trait}>
-                                            {t}
-                                        </span>
-                                    ))}
+                                <div className={styles.npcRowBadges}>
+                                    {npc.saved && <span className={styles.savedBadge}>SAVED</span>}
+                                    <span className={`badge ${roleColors[npc.role] || "badge-gold"}`}>
+                                        {npc.role}
+                                    </span>
                                 </div>
                             </button>
                         ))}
