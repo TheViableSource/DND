@@ -5,53 +5,76 @@ const quickStartCards = [
   {
     icon: "📜",
     title: "Plan a Session",
-    description: "Step-by-step wizard to plan your next game night",
+    description: "Step-by-step wizard with built-in NPC & monster generators, then export a polished PDF",
     href: "/session-planner",
     color: "gold",
   },
   {
     icon: "⚔️",
     title: "Browse Story Arcs",
-    description: "Pre-built campaign templates ready to run",
+    description: "Pre-built campaign templates with encounters, NPCs, and story beats ready to run",
     href: "/story-arcs",
     color: "red",
   },
   {
     icon: "🧙",
-    title: "Meet Your NPCs",
-    description: "20 characters with dialogue scripts ready to go",
+    title: "NPC Library",
+    description: "59 fully-detailed characters with personality, motivation, secrets, and key dialogue",
     href: "/npcs",
     color: "purple",
   },
   {
     icon: "🐉",
-    title: "Build an Encounter",
-    description: "Find monsters and balance combat for your party",
+    title: "Bestiary",
+    description: "20 monsters with full stat blocks, ability scores, tactics, and DM tips",
     href: "/bestiary",
     color: "emerald",
   },
 ];
 
 const dmTips = [
-  "Remember: the goal is for everyone to have fun — including you!",
+  "Remember: the goal is for everyone to have fun, including you!",
   "It's okay to say 'Let me look that up' during a session. Even veteran DMs do it.",
   "Your players will ALWAYS do something unexpected. Embrace it!",
   "Not every encounter needs to be combat. Social and exploration are just as engaging.",
   "If you're not sure about a rule, make a ruling and look it up later.",
-  "Session Zero is essential — discuss expectations, themes, and boundaries before you start.",
+  "Session Zero is essential. Discuss expectations, themes, and boundaries before you start.",
   "Give your NPCs one memorable quirk and your players will remember them forever.",
   "When in doubt, ask your players: 'What do you want to do?'",
-  "End each session with a cliffhanger or a question — it keeps players excited for next time.",
+  "End each session with a cliffhanger or a question. It keeps players excited for next time.",
   "You don't need to prepare everything. Prepare the important moments and improvise the rest.",
 ];
 
 const toolCards = [
-  { icon: "🗺️", title: "Map Gallery", desc: "Scene-appropriate maps with tactical notes", href: "/maps" },
-  { icon: "📖", title: "Quick Rules", desc: "Searchable rules for mid-session lookups", href: "/rules" },
-  { icon: "🐉", title: "Bestiary", desc: "Monster stats with 'How to Run' tips", href: "/bestiary" },
-  { icon: "🧙", title: "NPC Library", desc: "Characters with copy-paste dialogue", href: "/npcs" },
-  { icon: "⚔️", title: "Story Arcs", desc: "Complete campaign templates", href: "/story-arcs" },
-  { icon: "📜", title: "Session Planner", desc: "Plan your game step by step", href: "/session-planner" },
+  { icon: "🗺️", title: "Map Generator", desc: "Procedurally generated dungeon, wilderness & urban maps with room keys", href: "/maps" },
+  { icon: "📖", title: "Quick Rules", desc: "Searchable rules reference for mid-session lookups", href: "/rules" },
+  { icon: "🐉", title: "Bestiary + Generator", desc: "Full monster stat blocks with a random pull generator", href: "/bestiary" },
+  { icon: "🧙", title: "NPC Library + Generator", desc: "59 NPCs plus a random NPC generator with dialogue", href: "/npcs" },
+  { icon: "⚔️", title: "Story Arcs", desc: "Complete multi-session campaign templates", href: "/story-arcs" },
+  { icon: "📜", title: "Session Planner", desc: "Plan, generate, and export your game as a PDF", href: "/session-planner" },
+];
+
+const featureHighlights = [
+  {
+    icon: "🎲",
+    title: "NPC Generator",
+    description: "Generate fully-fleshed NPCs on the fly: personality, motivation, a hidden secret, and three lines of key dialogue. Choose a role (Ally, Antagonist, Quest Giver, Neutral) and get a character ready to roleplay in seconds.",
+  },
+  {
+    icon: "💀",
+    title: "Monster Generator",
+    description: "Pull a random monster from the bestiary with full stat blocks: AC, HP, ability scores, actions, tactics, and DM tips. Filter by challenge rating to match your party's level.",
+  },
+  {
+    icon: "🗺️",
+    title: "Dungeon Map Generator",
+    description: "Procedurally generated maps with room numbers, corridors, terrain, and a full room key. Choose from dungeon, wilderness, or urban environments. Each map is unique and seeded for consistency.",
+  },
+  {
+    icon: "📄",
+    title: "PDF Session Export",
+    description: "Plan your session step by step, save your favourite NPCs and monsters, link maps, then export everything as a beautifully formatted PDF, complete with rendered map images.",
+  },
 ];
 
 export default function Home() {
@@ -92,12 +115,14 @@ export default function Home() {
           </div>
           <h1 className={styles.heroTitle}>Your Adventure Begins Here</h1>
           <p className={styles.heroSubtitle}>
-            Everything a new Dungeon Master needs to run an epic D&amp;D campaign.
-            Pre-built stories, NPC scripts, monster stats, maps, and more.
+            DM&apos;s Tome is a free, all-in-one toolkit for Dungeons &amp; Dragons Dungeon Masters.
+            Whether you&apos;re prepping your first session or building a full campaign, everything you
+            need is here: NPC &amp; monster generators, procedural dungeon maps, pre-built story arcs,
+            quick rules reference, and a session planner that exports to PDF.
           </p>
           <div className={styles.heroCta}>
-            <Link href="/story-arcs" className="btn btn-primary">
-              Start a Campaign
+            <Link href="/session-planner" className="btn btn-primary">
+              Plan Your Session
             </Link>
             <Link href="/rules" className="btn btn-secondary">
               Learn the Rules
@@ -118,6 +143,20 @@ export default function Home() {
           </div>
         </section>
 
+        {/* What is DM's Tome */}
+        <section className={styles.aboutSection}>
+          <h2 className={styles.sectionTitle}>What is DM&apos;s Tome?</h2>
+          <p className={styles.aboutText}>
+            Running a D&amp;D game can feel overwhelming, especially the first few times. DM&apos;s Tome
+            puts every tool you need in one place so you can focus on telling great stories instead of
+            drowning in prep work. Browse a library of ready-to-use NPCs and monsters, generate new
+            ones on the fly with built-in generators, explore procedurally-created dungeon maps, follow
+            pre-built story arcs, and plan your entire session with a step-by-step wizard that exports
+            a polished PDF you can bring to the table. No accounts, no sign-ups, no cost. Just open
+            it and start building your adventure.
+          </p>
+        </section>
+
         {/* Quick Start Cards */}
         <section className={styles.quickStart}>
           <h2 className={styles.sectionTitle}>Quick Start</h2>
@@ -129,6 +168,20 @@ export default function Home() {
                 <p>{card.description}</p>
                 <span className={styles.cardArrow}>→</span>
               </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Feature Highlights */}
+        <section className={styles.featuresSection}>
+          <h2 className={styles.sectionTitle}>Built-In Generators &amp; Tools</h2>
+          <div className={styles.featuresGrid}>
+            {featureHighlights.map((feature) => (
+              <div key={feature.title} className={styles.featureCard}>
+                <span className={styles.featureIcon}>{feature.icon}</span>
+                <h3 className={styles.featureTitle}>{feature.title}</h3>
+                <p className={styles.featureDesc}>{feature.description}</p>
+              </div>
             ))}
           </div>
         </section>
@@ -154,7 +207,7 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>What&apos;s Inside the Tome</h2>
           <div className={styles.statsGrid}>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>20</span>
+              <span className={styles.statNumber}>59</span>
               <span className={styles.statLabel}>Unique NPCs</span>
             </div>
             <div className={styles.statItem}>
@@ -162,20 +215,20 @@ export default function Home() {
               <span className={styles.statLabel}>Monster Stat Blocks</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>12</span>
-              <span className={styles.statLabel}>Battle Maps</span>
+              <span className={styles.statNumber}>∞</span>
+              <span className={styles.statLabel}>Generated Maps</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>4</span>
               <span className={styles.statLabel}>Campaign Templates</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>30+</span>
-              <span className={styles.statLabel}>Quick Reference Rules</span>
+              <span className={styles.statNumber}>3</span>
+              <span className={styles.statLabel}>Built-In Generators</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNumber}>∞</span>
-              <span className={styles.statLabel}>Adventures Waiting</span>
+              <span className={styles.statNumber}>PDF</span>
+              <span className={styles.statLabel}>Session Export</span>
             </div>
           </div>
         </section>

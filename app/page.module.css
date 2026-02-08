@@ -216,6 +216,62 @@
   color: var(--color-gold);
 }
 
+/* About Section */
+.aboutSection {
+  margin-bottom: var(--space-3xl);
+}
+
+.aboutText {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  max-width: 800px;
+}
+
+/* Feature Highlights */
+.featuresSection {
+  margin-bottom: var(--space-3xl);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.featureCard {
+  padding: var(--space-xl);
+  background: linear-gradient(145deg, rgba(123, 45, 142, 0.05), rgba(212, 165, 116, 0.03));
+  border: 1px solid rgba(212, 165, 116, 0.12);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.featureCard:hover {
+  border-color: rgba(212, 165, 116, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.featureIcon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.featureTitle {
+  font-size: 1.1rem;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-sm);
+}
+
+.featureDesc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* Tools Grid */
 .toolsSection {
   margin-bottom: var(--space-3xl);
@@ -322,6 +378,10 @@
   }
 
   .quickStartGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featuresGrid {
     grid-template-columns: 1fr;
   }
 
